@@ -1,0 +1,45 @@
+{
+  "interestedMedia": [
+    { "value": "movies", "label": "Movies" },
+    { "value": "tv-shows", "label": "TV Shows" },
+    { "value": "music", "label": "Music" },
+    { "value": "podcasts", "label": "Podcasts" },
+    { "value": "books", "label": "Books" }
+  ],
+  "interestedroles": [
+    { "value": "actor", "label": "Actor" },
+    { "value": "director", "label": "Director" },
+    { "value": "producer", "label": "Producer" },
+    { "value": "screenwriter", "label": "Screenwriter" },
+    { "value": "editor", "label": "Editor" }
+  ],
+  "comfortablewith": [
+    { "value": "stage", "label": "Stage" },
+    { "value": "camera", "label": "Camera" },
+    { "value": "live-audience", "label": "Live Audience" },
+    { "value": "scripted-roles", "label": "Scripted Roles" },
+    { "value": "improvisation", "label": "Improvisation" }
+  ],
+  "comfortableclothing": [
+    { "value": "formal", "label": "Formal" },
+    { "value": "casual", "label": "Casual" },
+    { "value": "athletic", "label": "Athletic" },
+    { "value": "vintage", "label": "Vintage" },
+    { "value": "costume", "label": "Costume" }
+  ],
+  "interestedShoots": [
+    { "value": "portrait", "label": "Portrait" },
+    { "value": "landscape", "label": "Landscape" },
+    { "value": "event", "label": "Event" },
+    { "value": "wildlife", "label": "Wildlife" },
+    { "value": "nature", "label": "Nature" },
+    { "value": "food", "label": "Food" },
+    { "value": "architecture", "label": "Architecture" },
+    { "value": "abstract", "label": "Abstract" },
+    { "value": "street", "label": "Street" },
+    { "value": "travel", "label": "Travel" },
+    { "value": "sports", "label": "Sports" },
+    { "value": "macro", "label": "Macro" },
+    { "value": "black-and-white", "label": "Black and White" }
+  ]
+}

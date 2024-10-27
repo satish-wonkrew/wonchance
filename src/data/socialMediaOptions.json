@@ -1,0 +1,7 @@
+[
+  { "value": "facebook", "label": "Facebook" },
+  { "value": "twitter", "label": "Twitter" },
+  { "value": "instagram", "label": "Instagram" },
+  { "value": "linkedin", "label": "LinkedIn" },
+  { "value": "youtube", "label": "YouTube" }
+]

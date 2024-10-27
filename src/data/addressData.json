@@ -1,0 +1,97 @@
+{
+  "countries": [
+    { "value": "India", "label": "India" },
+    { "value": "United States", "label": "United States" },
+    { "value": "Singapore", "label": "Singapore" },
+    { "value": "United Kingdom", "label": "United Kingdom" },
+    { "value": "Nepal", "label": "Nepal" },
+    { "value": "Sri Lanka", "label": "Sri Lanka" }
+  ],
+  "states": [
+   
+    { "value": "Tamil Nadu", "label": "Tamil Nadu", "country": "India" },
+    { "value": "Karnataka", "label": "Karnataka", "country": "India" },
+    {
+      "value": "Andhra Pradesh",
+      "label": "Andhra Pradesh",
+      "country": "India"
+    },
+    { "value": "Telangana", "label": "Telangana", "country": "India" },
+    { "value": "Kerala", "label": "Kerala", "country": "India" },
+    { "value": "Maharashtra", "label": "Maharashtra", "country": "India" },
+    { "value": "Delhi", "label": "Delhi", "country": "India" },
+    { "value": "West Bengal", "label": "West Bengal", "country": "India" },
+   
+    {
+      "value": "California",
+      "label": "California",
+      "country": "United States"
+    },
+    { "value": "New York", "label": "New York", "country": "United States" },
+    { "value": "Texas", "label": "Texas", "country": "United States" },
+   
+    { "value": "Singapore", "label": "Singapore", "country": "Singapore" },
+   
+    { "value": "England", "label": "England", "country": "United Kingdom" },
+    { "value": "Scotland", "label": "Scotland", "country": "United Kingdom" },
+    
+    { "value": "Bagmati", "label": "Bagmati", "country": "Nepal" },
+    {
+      "value": "Province No. 1",
+      "label": "Province No. 1",
+      "country": "Nepal"
+    },
+    { "value": "Gandaki", "label": "Gandaki", "country": "Nepal" },
+    
+    { "value": "Western", "label": "Western", "country": "Sri Lanka" },
+    { "value": "Central", "label": "Central", "country": "Sri Lanka" }
+  ],
+  "cities": [
+    
+    { "value": "Chennai", "label": "Chennai", "state": "Tamil Nadu" },
+    { "value": "Coimbatore", "label": "Coimbatore", "state": "Tamil Nadu" },
+    { "value": "Madurai", "label": "Madurai", "state": "Tamil Nadu" },
+    { "value": "Bangalore", "label": "Bangalore", "state": "Karnataka" },
+    { "value": "Mysore", "label": "Mysore", "state": "Karnataka" },
+    { "value": "Hyderabad", "label": "Hyderabad", "state": "Telangana" },
+    { "value": "Vijayawada", "label": "Vijayawada", "state": "Andhra Pradesh" },
+    {
+      "value": "Visakhapatnam",
+      "label": "Visakhapatnam",
+      "state": "Andhra Pradesh"
+    },
+    {
+      "value": "Thiruvananthapuram",
+      "label": "Thiruvananthapuram",
+      "state": "Kerala"
+    },
+    { "value": "Kochi", "label": "Kochi", "state": "Kerala" },
+    { "value": "Mumbai", "label": "Mumbai", "state": "Maharashtra" },
+    { "value": "Pune", "label": "Pune", "state": "Maharashtra" },
+    { "value": "Delhi", "label": "Delhi", "state": "Delhi" },
+    { "value": "Kolkata", "label": "Kolkata", "state": "West Bengal" },
+   
+    { "value": "Los Angeles", "label": "Los Angeles", "state": "California" },
+    {
+      "value": "San Francisco",
+      "label": "San Francisco",
+      "state": "California"
+    },
+    { "value": "New York City", "label": "New York City", "state": "New York" },
+    { "value": "Houston", "label": "Houston", "state": "Texas" },
+    { "value": "Dallas", "label": "Dallas", "state": "Texas" },
+   
+    { "value": "Singapore", "label": "Singapore", "state": "Singapore" },
+   
+    { "value": "London", "label": "London", "state": "England" },
+    { "value": "Manchester", "label": "Manchester", "state": "England" },
+    { "value": "Edinburgh", "label": "Edinburgh", "state": "Scotland" },
+    
+    { "value": "Kathmandu", "label": "Kathmandu", "state": "Bagmati" },
+    { "value": "Pokhara", "label": "Pokhara", "state": "Gandaki" },
+    { "value": "Biratnagar", "label": "Biratnagar", "state": "Province No. 1" },
+    
+    { "value": "Colombo", "label": "Colombo", "state": "Western" },
+    { "value": "Kandy", "label": "Kandy", "state": "Central" }
+  ]
+}

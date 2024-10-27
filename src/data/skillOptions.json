@@ -1,0 +1,48 @@
+{
+  "driving": [
+    {
+      "value": "four wheeler",
+      "label": "Four Wheeler"
+    },
+    {
+      "value": "two wheeler",
+      "label": "Two Wheeler"
+    },
+    {
+      "value": "heavy machinery",
+      "label": "Heavy Machinery"
+    },
+    {
+      "value": "other",
+      "label": "Other"
+    }
+  ],
+  "singing": [
+    { "value": "classical", "label": "Classical" },
+    { "value": "pop", "label": "Pop" },
+    { "value": "rock", "label": "Rock" },
+    { "value": "country", "label": "Country" },
+    { "value": "jazz", "label": "Jazz" },
+    { "value": "other", "label": "Other" }
+  ],
+  "danceStyle": [
+    { "value": "ballet", "label": "Ballet" },
+    { "value": "hipHop", "label": "Hip Hop" },
+    { "value": "tap", "label": "Tap" },
+    { "value": "contemporary", "label": "Contemporary" },
+    { "value": "other", "label": "Other" }
+  ],
+  "martialArts": [
+    { "value": "karate", "label": "Karate" },
+    { "value": "taekwondo", "label": "Taekwondo" },
+    { "value": "judo", "label": "Judo" },
+    { "value": "boxing", "label": "Boxing" },
+    { "value": "other", "label": "Other" }
+  ],
+  "waterActivities": [
+    { "value": "swimming", "label": "Swimming" },
+    { "value": "surfing", "label": "Surfing" },
+    { "value": "diving", "label": "Diving" },
+    { "value": "other", "label": "Other" }
+  ]
+}

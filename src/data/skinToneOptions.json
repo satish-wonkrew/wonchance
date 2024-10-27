@@ -1,0 +1,8 @@
+[
+    { "value": "light", "label": "Light" },
+    { "value": "medium", "label": "Medium" },
+    { "value": "medium-dark", "label": "Medium Dark" },
+    { "value": "dark", "label": "Dark" },
+    { "value": "deep", "label": "Deep" }
+  ]
+  

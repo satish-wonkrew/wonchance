@@ -1,0 +1,10 @@
+[
+    { "value": "slim", "label": "Slim" },
+    { "value": "average", "label": "Average" },
+    { "value": "athletic", "label": "Athletic" },
+    { "value": "heavy", "label": "Heavy" },
+    { "value": "muscular", "label": "Muscular" },
+    { "value": "curvy", "label": "Curvy" },
+    { "value": "plus-size", "label": "Plus Size" }
+  ]
+  

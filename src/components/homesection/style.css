@@ -1,0 +1,97 @@
+.body {
+  font-family: 'Muli', sans-serif;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  overflow: hidden; /* Hide overflow to prevent scroll bars */
+  background-color: #f0f0f0; /* Light background for contrast */
+}
+
+.container {
+  display: flex;
+  width: 90vw;
+  overflow: hidden; /* Prevent overflow of panels */
+  position: relative; /* Needed for absolute positioning of buttons */
+}
+
+.panel {
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 45vh;
+  border-radius: 10px;
+  color: #fff;
+  cursor: pointer;
+  flex: 0.5; /* Default flex value */
+  margin: 10px;
+  position: relative;
+  transition: flex 0.3s ease-in, transform 0.3s ease; /* Smooth transitions for flex and transform */
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); /* Add shadow for depth */
+}
+
+.panel h3 {
+  font-size: 24px;
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+  margin: 0;
+  opacity: 0;
+  transition: opacity 0.3s ease-in; /* Smooth opacity transition */
+}
+
+.panel.active {
+  flex: 1; /* Enlarge the active panel */
+}
+
+.panel.active h3 {
+  opacity: 1; /* Show title in active state */
+  transition: opacity 0.3s ease-in 0.1s; /* Delayed opacity for title */
+}
+
+.carousel-button {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(255, 255, 255, 0.8); /* Semi-transparent background for buttons */
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  padding: 10px;
+  z-index: 1;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3); /* Shadow for buttons */
+  transition: background 0.3s; /* Smooth background transition */
+}
+
+.carousel-button:hover {
+  background: rgba(255, 255, 255, 1); /* Change to solid on hover */
+}
+
+.carousel-button.left {
+  left: 10px;
+}
+
+.carousel-button.right {
+  right: 10px;
+}
+
+@media (max-width: 600px) {
+  .container {
+    width: 100vw; /* Full width on smaller screens */
+  }
+
+  .panel {
+    flex: 0.75; /* Smaller flex on mobile */
+    height: 35vh; /* Adjust height for mobile */
+  }
+
+  .panel:nth-of-type(4),
+  .panel:nth-of-type(5) {
+    display: none; /* Hide panels on small screens */
+  }
+
+  .panel.active {
+    transform: scale(1); /* No scale effect on active panel for smaller screens */
+  }
+}

@@ -1,0 +1,356 @@
+{
+    "wctId": "WCT1234",
+    "whatsappNumber": "+911234567890",
+    "profilePictureUrl": "https://example.com/profile.jpg",
+    "role": "talent",
+    "gender": "male",
+    "bio": "Aspiring actor with a passion for theatre and film.",
+    "galleryDetails": {
+      "photos": [
+        "https://example.com/photo1.jpg",
+        "https://example.com/photo2.jpg"
+      ],
+      "videos": [
+        "https://example.com/video1.mp4"
+      ]
+    },
+    "Name": "John Doe",
+    "email": "john.doe@example.com",
+    "profile": {
+      "statusLevel": "active",
+      "firstName": "John",
+      "lastName": "Doe",
+      "screenName": "Johnny",
+      "dateOfBirth": "1990-05-15",
+      "faceCloseupPicture": "https://example.com/closeup.jpg",
+      "faceReactionVideo": "https://example.com/reaction.mp4",
+      "fathersName": "Richard Doe",
+      "mothersName": "Jane Doe",
+      "experienceLevel": "Experienced",
+      "maritalStatus": "single",
+      "educationalQualification": "Bachelor of Arts in Theatre",
+      "receiveNotificationOnWhatsApp": true,
+      "nativeState": "California",
+      "nationality": "American",
+      "nativePlace": "Los Angeles",
+      "currentCity": "New York",
+      "address": "123 Broadway St, New York, NY",
+      "speakingLanguages": ["English", "Spanish"],
+      "readingLanguages": ["English"],
+      "heart": "follow",
+      "profileViewers": ["userId123", "userId456"],
+      "company": "companyId789",
+      "physicalDetails": {
+        "height": 180,
+        "weight": 75,
+        "eyeColor": "Brown",
+        "hairColor": "Black",
+        "skinTone": "Medium",
+        "bodyType": "Athletic",
+        "tattoos": false,
+        "piercings": true
+      },
+      "workDetails": {
+        "experience": "Experienced",
+        "projects": [
+          {
+            "title": "Project A",
+            "role": "Lead Actor",
+            "description": "Lead role in a feature film.",
+            "experience": "Challenging but rewarding.",
+            "upcomingprojects": "Project B",
+            "shootperday": 8
+          }
+        ],
+        "availability": "Freelance"
+      },
+      "skillDetails": {
+        "skills": [
+          {
+            "title": "Acting",
+            "description": "Expert in method acting."
+          },
+          {
+            "title": "Singing",
+            "description": "Trained vocalist."
+          }
+        ],
+        "certifications": [
+          {
+            "name": "Certified Actor",
+            "institution": "Hollywood Acting School",
+            "year": 2015
+          }
+        ]
+      },
+      "socialMedia": {
+        "facebook": "https://facebook.com/johndoe",
+        "instagram": "https://instagram.com/johndoe",
+        "twitter": "https://twitter.com/johndoe"
+      },
+      "interests": {
+        "hobbies": ["Dancing", "Photography"],
+        "genres": ["Action", "Drama"],
+        "interestedmedia": ["Film", "TV Shows"],
+        "interestedroles": ["Actor", "Director"],
+        "comfortablewith": ["Action scenes", "Comedy"],
+        "comfortableclothing": ["Casual", "Formal"]
+      }
+    },
+    "companyId": "companyId789",
+    "projects": ["projectId123", "projectId456"],
+    "crew": ["crewMemberId1", "crewMemberId2"],
+    "isApproved": true,
+    "bookmarks": ["castingId123", "castingId456"],
+    "tags": ["talent", "actor"]
+  }
+
+
+
+
+  // expected 
+  {
+    "wctId": "WCT1234",
+    "whatsappNumber": "+911234567890",
+    "profilePictureUrl": "https://example.com/profile.jpg",
+    "role": "talent",
+    "gender": "male",
+    "bio": "Aspiring actor with a passion for theatre and film.",
+    "galleryDetails": {
+      "photos": [
+        "https://example.com/photo1.jpg",
+        "https://example.com/photo2.jpg"
+      ],
+      "videos": [
+        "https://example.com/video1.mp4"
+      ]
+    },
+    "Name": "John Doe",
+    "email": "john.doe@example.com",
+    "profile": {
+      "statusLevel": "active",
+      "firstName": "John",
+      "lastName": "Doe",
+      "screenName": "Johnny",
+      "dateOfBirth": "1990-05-15",
+      "faceCloseupPicture": "https://example.com/closeup.jpg",
+      "faceReactionVideo": "https://example.com/reaction.mp4",
+      "fathersName": "Richard Doe",
+      "mothersName": "Jane Doe",
+      "experienceLevel": "Experienced",
+      "maritalStatus": "single",
+      "educationalQualification": "Bachelor of Arts in Theatre",
+      "receiveNotificationOnWhatsApp": true,
+      "nativeState": "California",
+      "nationality": "American",
+      "nativePlace": "Los Angeles",
+      "currentCity": "New York",
+      "address": "123 Broadway St, New York, NY",
+      "speakingLanguages": ["English", "Spanish"],
+      "readingLanguages": ["English"],
+      "heart": "follow",
+      "profileViewers": ["userId123", "userId456"],
+      "company": "companyId789",
+      "physicalDetails": {
+        "height": 180,
+        "weight": 75,
+        "eyeColor": "Brown",
+        "hairColor": "Black",
+        "skinTone": "Medium",
+        "bodyType": "Athletic",
+        "tattoos": false,
+        "piercings": true,
+        "chest": 100,
+        "bust": 90,
+        "waist": 32,
+        "hips": 40,
+        "shoeSize": 9
+      },
+      "workDetails": {
+        "experience": "Experienced",
+        "projects": [
+          {
+            "title": "Project A",
+            "role": "Lead Actor",
+            "description": "Lead role in a feature film.",
+            "experience": "Challenging but rewarding.",
+            "upcomingprojects": "Project B",
+            "shootperday": 8,
+            "achievements": "Best Actor Award, 2020"
+          }
+        ],
+        "availability": "Freelance"
+      },
+      "skillDetails": {
+        "skills": [
+          {
+            "title": "Acting",
+            "description": "Expert in method acting."
+          },
+          {
+            "title": "Singing",
+            "description": "Trained vocalist."
+          },
+          {
+            "title": "Driving",
+            "description": "Skilled driver with a license."
+          },
+          {
+            "title": "Dancing",
+            "description": "Experienced in contemporary and ballet dance."
+          },
+          {
+            "title": "Martial Arts",
+            "description": "Black belt in Karate."
+          }
+        ],
+        "certifications": [
+          {
+            "name": "Certified Actor",
+            "institution": "Hollywood Acting School",
+            "year": 2015
+          }
+        ]
+      },
+      "socialMedia": {
+        "facebook": "https://facebook.com/johndoe",
+        "instagram": "https://instagram.com/johndoe",
+        "twitter": "https://twitter.com/johndoe"
+      },
+      "interests": {
+        "hobbies": ["Dancing", "Photography"],
+        "genres": ["Action", "Drama"],
+        "interestedmedia": ["Film", "TV Shows"],
+        "interestedroles": ["Actor", "Director"],
+        "comfortablewith": ["Action scenes", "Comedy"],
+        "comfortableclothing": ["Casual", "Formal"]
+      }
+    },
+    "companyId": "companyId789",
+    "projects": ["projectId123", "projectId456"],
+    "crew": ["crewMemberId1", "crewMemberId2"],
+    "isApproved": true,
+    "bookmarks": ["castingId123", "castingId456"],
+    "tags": ["talent", "actor"],
+    "bankingDetails": {
+      "accountHolderName": "John Doe",
+      "accountNumber": "1234567890",
+      "bankName": "XYZ Bank",
+      "branchName": "Broadway",
+      "ifscCode": "XYZB0001234"
+    },
+    "referral": {
+      "code": "REF1234",
+      "referredBy": "user123"
+    }
+  }
+
+
+  //
+
+
+
+
+  python code 
+
+
+  import requests
+from requests.auth import HTTPBasicAuth
+import json
+
+# WordPress REST API URLs
+user_url = "https://wonchance.com/wp-json/wp/v2/users"
+media_url = "https://wonchance.com/wp-json/wp/v2/media"
+
+# Example credentials (replace with your actual username and password)
+username = "vijayj"
+password = "krU7 NU27 B1pp V9Vc eEt9 jyYp"
+
+def fetch_all_data(url):
+    """Fetch all pages of data from a given API URL."""
+    data = []
+    page = 1
+    while True:
+        response = requests.get(
+            url, auth=HTTPBasicAuth(username, password), params={"page": page}
+        )
+        if response.status_code == 200:
+            items = response.json()
+            if not items:  # No more items, break the loop
+                break
+            data.extend(items)
+            page += 1
+        else:
+            print(f"Error fetching data: {response.status_code}")
+            print(response.text)
+            break
+    return data
+
+def get_media_url_by_id(media_data, media_id):
+    """Fetch the media URL by media ID."""
+    for media in media_data:
+        if str(media["id"]) == str(media_id):  # Match ID as string
+            return media["source_url"]
+    return None
+
+def replace_ids_with_urls(user_meta, media_data):
+    """Replace media IDs in user meta with URLs."""
+    # Replace profile_picture
+    if "profile-picture" in user_meta and user_meta["profile-picture"]:
+        profile_url = get_media_url_by_id(media_data, user_meta["profile-picture"])
+        if profile_url:
+            user_meta["profile-picture"] = profile_url
+
+    # Replace gallery IDs with URLs
+    if "gallery" in user_meta and isinstance(user_meta["gallery"], list):
+        user_meta["gallery"] = [
+            get_media_url_by_id(media_data, media_id)
+            for media_id in user_meta["gallery"]
+        ]
+
+    # Replace single video ID with URL (updated for "video")
+    if "video" in user_meta and user_meta["video"]:
+        video_url = get_media_url_by_id(media_data, user_meta["video"])
+        if video_url:
+            user_meta["video"] = video_url
+        else:
+            print(f"Video ID {user_meta['video']} not found in media data.")
+
+    return user_meta
+
+try:
+    # Fetch all users and media with authentication
+    users = fetch_all_data(user_url)
+    print(f"{len(users)} users fetched successfully.")
+
+    media = fetch_all_data(media_url)
+    print(f"{len(media)} media items fetched successfully.")
+
+    # Combine user with their media data (profile_picture, gallery, video)
+    combined_data = []
+    for user in users:
+        # Get user meta data and replace media IDs with URLs
+        user_meta = user.get("meta", {})
+        updated_meta = replace_ids_with_urls(user_meta, media)
+
+        # Add the updated user data with media URLs
+        combined_data.append(
+            {
+                "user": {
+                    "id": user["id"],
+                    "name": user["name"],
+                    "slug": user["slug"],
+                    "description": user.get("description", ""),
+                    "link": user["link"],
+                    "meta": updated_meta,  # The updated meta with media URLs
+                }
+            }
+        )
+
+    # Export the combined data to a JSON file
+    with open("wp_users_with_media.json", "w") as output_file:
+        json.dump(combined_data, output_file, indent=4)
+    print("Export completed: wp_users_with_media.json")
+
+except Exception as e:
+    print(f"An error occurred: {e}")
