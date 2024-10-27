@@ -115,22 +115,6 @@ const workdetails = ({ profile }) => {
                   </div>
                 )}
               </div>
-
-              {/* Work Links Section */}
-              <div className="bg-white shadow-lg rounded-lg p-4 transition duration-300 ease-in-out hover:shadow-xl">
-                <div
-                  className="flex justify-between cursor-pointer items-center"
-                  onClick={() => toggleSection("workLinks")}
-                >
-                  <span className="font-semibold">Work Links</span>
-                  <span>{openSections.workLinks ? "↑" : "↓"}</span>
-                </div>
-                {openSections.workLinks && (
-                  <p className="mt-2 text-sm">
-                    {profiles?.profile.workDetails.worklinks || "No work links"}
-                  </p>
-                )}
-              </div>
             </div>
 
             {/* Right Side Accordions */}
