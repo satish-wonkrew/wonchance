@@ -88,10 +88,6 @@ export default function Home() {
                         <strong>Achievements:</strong>{" "}
                         {profiles?.profile.workDetails.achievements || "N/A"}
                       </li>
-{/*                       <li>
-                        <strong>Availability:</strong>{" "}
-                        {profiles?.profile.workDetails.availability || "N/A"}
-                      </li> */}
                       <li>
                         <strong>Experience:</strong>{" "}
                         {profiles?.profile.workDetails.experience || "N/A"}
@@ -112,51 +108,6 @@ export default function Home() {
                     </ul>
 
                     {/* Render projects array */}
-                    <div className="mt-4">
-{/*                       <h4 className="font-semibold text-md">Projects:</h4>
-                      {profiles?.profile.workDetails.projects?.length > 0 ? (
-                        profiles.profile.workDetails.projects.map(
-                          (project, index) => (
-                            <div
-                              key={index}
-                              className="bg-gray-100 rounded-lg p-3 mt-2 transition duration-300 ease-in-out hover:bg-gray-200"
-                            >
-                              <div
-                                className="flex justify-between cursor-pointer items-center"
-                                onClick={() => toggleMovie(project.description)}
-                              >
-                                <span>{project.description}</span>
-                                <span>
-                                  {openMovie[project.description] ? "↑" : "↓"}
-                                </span>
-                              </div> */}
-
-                              {/* Nested Accordion for project details */}
-{/*                               {openMovie[project.description] && (
-                                <div className="mt-2 bg-white p-4 rounded-lg shadow-inner">
-                                  <ul className="list-disc list-inside text-sm space-y-1">
-                                    <li>
-                                      <strong>Role:</strong>{" "}
-                                      {project.role || "Not specified"}
-                                    </li>
-                                    <li>
-                                      <strong>Shoot per Day:</strong>{" "}
-                                      {project.shootPerDay || "Not specified"}
-                                    </li>
-                                    <li>
-                                      <strong>Upcoming Projects:</strong>{" "}
-                                      {project.upcomingProjects || "None"}
-                                    </li>
-                                  </ul>
-                                </div>
-                              )} */}
-                            // </div>
-                      //     )
-                      //   )
-                      // ) : (
-                      //   <p>No projects available.</p>
-                      // )}
-                    </div>
                   </div>
                 </div>
               )}
