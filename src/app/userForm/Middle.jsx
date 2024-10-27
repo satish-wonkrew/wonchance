@@ -827,11 +827,14 @@ const MidlleInfo = ({ nextStep, prevStep, onFormDataChange, formData }) => {
                     <option value="" disabled>
                       Select Eye Color
                     </option>
-                    <option value="Light">Light</option>
-                    <option value="Fair">Fair</option>
-                    <option value="Medium">Medium</option>
-                    <option value="Dark">Dark</option>
-                    <option value="Other">Other</option>
+                    <option value="Amber">Amber</option>
+                    <option value="Blue">Blue</option>
+                    <option value="Green">Green</option>
+                    <option value="Hazel">Hazel</option>
+                    <option value="Brown">Brown</option>
+                    <option value="Black">Black</option>
+                    <option value="Gray">Gray</option>
+                    <option value="Violet">Red</option>
                   </select>
                 </div>
 
@@ -848,11 +851,13 @@ const MidlleInfo = ({ nextStep, prevStep, onFormDataChange, formData }) => {
                     <option value="" disabled>
                       Select skin tone
                     </option>
-                    <option value="Light">Light</option>
-                    <option value="Fair">Fair</option>
-                    <option value="Medium">Medium</option>
-                    <option value="Dark">Dark</option>
-                    <option value="Other">Other</option>
+                    <option value="Pale White">Pale White</option>
+                    <option value="White to Light Beige">White to Light Beige</option>
+                    <option value="Beige">Beige</option>
+                    <option value="Light Brown">Light Brown</option>
+                    <option value="Moderate Brown">Moderate Brown</option>
+                    <option value="Dark Brown">Dark Brown</option>
+                    <option value="Black">Black</option>
                   </select>
                 </div>
 
@@ -876,6 +881,25 @@ const MidlleInfo = ({ nextStep, prevStep, onFormDataChange, formData }) => {
                     <option value="Other">Other</option>
                   </select>
                 </div>
+                {/* Body Shap */}
+                <div className="mt-2">
+                  <Label>Body Shape</Label>
+                  <select
+                    value={physicalDetails.bodyShape || ""}
+                    onChange={(e) =>
+                      handlePhysicalDetailChange("bodyShape", e.target.value)
+                    }
+                    className="border border-gray-300 rounded-lg p-2 mt-1 w-full focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  >
+                    <option value="" disabled>
+                      Select body shape
+                    </option>
+                    <option value="Apple">Apple</option>
+                    <option value="Pear">Pear</option>
+                    <option value="Hourglass">Hourglass</option>
+                    <option value="Rectangle">Rectangle</option>
+                    <option value="Other">Other</option>
+                  </select>
               </div>
             </div>
           </form>
