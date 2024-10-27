@@ -827,6 +827,7 @@ const MidlleInfo = ({ nextStep, prevStep, onFormDataChange, formData }) => {
                     <option value="" disabled>
                       Select Eye Color
                     </option>
+                    {/* Eye Color Option amber, blue, black, brown, gray, green, hazel, or red, */}
                     <option value="Amber">Amber</option>
                     <option value="Blue">Blue</option>
                     <option value="Green">Green</option>
@@ -851,8 +852,11 @@ const MidlleInfo = ({ nextStep, prevStep, onFormDataChange, formData }) => {
                     <option value="" disabled>
                       Select skin tone
                     </option>
+                    {/* Pale white, White to light beige, Beige, Light brown, Moderate brown and Dark brown or black add */}
                     <option value="Pale White">Pale White</option>
-                    <option value="White to Light Beige">White to Light Beige</option>
+                    <option value="White to Light Beige">
+                      White to Light Beige
+                    </option>
                     <option value="Beige">Beige</option>
                     <option value="Light Brown">Light Brown</option>
                     <option value="Moderate Brown">Moderate Brown</option>
@@ -900,6 +904,7 @@ const MidlleInfo = ({ nextStep, prevStep, onFormDataChange, formData }) => {
                     <option value="Rectangle">Rectangle</option>
                     <option value="Other">Other</option>
                   </select>
+                </div>
               </div>
             </div>
           </form>
