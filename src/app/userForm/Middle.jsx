@@ -811,7 +811,6 @@ const MidlleInfo = ({ nextStep, prevStep, onFormDataChange, formData }) => {
                 </div>
               </div>
             </div>
-
             <div className="mb-4">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 {/* Eye Color Select */}
@@ -885,26 +884,27 @@ const MidlleInfo = ({ nextStep, prevStep, onFormDataChange, formData }) => {
                     <option value="Other">Other</option>
                   </select>
                 </div>
-                {/* Body Shap */}
-                <div className="mt-2">
-                  <Label>Body Shape</Label>
-                  <select
-                    value={physicalDetails.bodyShape || ""}
-                    onChange={(e) =>
-                      handlePhysicalDetailChange("bodyShape", e.target.value)
-                    }
-                    className="border border-gray-300 rounded-lg p-2 mt-1 w-full focus:outline-none focus:ring-2 focus:ring-blue-500"
-                  >
-                    <option value="" disabled>
-                      Select body shape
-                    </option>
-                    <option value="Apple">Apple</option>
-                    <option value="Pear">Pear</option>
-                    <option value="Hourglass">Hourglass</option>
-                    <option value="Rectangle">Rectangle</option>
-                    <option value="Other">Other</option>
-                  </select>
-                </div>
+              </div>
+            </div>
+            <div className="mb-4">
+              <div className="mt-2">
+                <Label>Body Shape</Label>
+                <select
+                  value={physicalDetails.bodyShape || ""}
+                  onChange={(e) =>
+                    handlePhysicalDetailChange("bodyShape", e.target.value)
+                  }
+                  className="border border-gray-300 rounded-lg p-2 mt-1 w-full focus:outline-none focus:ring-2 focus:ring-blue-500"
+                >
+                  <option value="" disabled>
+                    Select body shape
+                  </option>
+                  <option value="Apple">Apple</option>
+                  <option value="Pear">Pear</option>
+                  <option value="Hourglass">Hourglass</option>
+                  <option value="Rectangle">Rectangle</option>
+                  <option value="Other">Other</option>
+                </select>
               </div>
             </div>
           </form>
