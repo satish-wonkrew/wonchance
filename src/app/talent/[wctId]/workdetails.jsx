@@ -68,10 +68,10 @@ export default function Work({ profile }) {
                         <strong>Achievements:</strong>{" "}
                         {profiles?.profile.workDetails.achievements || "N/A"}
                       </li>
-                      <li>
+{/*                       <li>
                         <strong>Availability:</strong>{" "}
                         {profiles?.profile.workDetails.availability || "N/A"}
-                      </li>
+                      </li> */}
                       <li>
                         <strong>Experience:</strong>{" "}
                         {profiles?.profile.workDetails.experience || "N/A"}
@@ -163,7 +163,7 @@ export default function Work({ profile }) {
             </div>
 
             {/* Work Links Section */}
-            <div className="bg-white shadow-lg rounded-lg p-4 transition duration-300 ease-in-out hover:shadow-xl">
+{/*             <div className="bg-white shadow-lg rounded-lg p-4 transition duration-300 ease-in-out hover:shadow-xl">
               <div
                 className="flex justify-between cursor-pointer items-center"
                 onClick={() => toggleSection("workLinks")}
@@ -177,7 +177,7 @@ export default function Work({ profile }) {
                 </p>
               )}
             </div>
-          </div>
+          </div> */}
 
           {/* Right Side Accordions */}
           <div className="space-y-4 col-span-1">
