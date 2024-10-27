@@ -88,10 +88,10 @@ export default function Home() {
                         <strong>Achievements:</strong>{" "}
                         {profiles?.profile.workDetails.achievements || "N/A"}
                       </li>
-                      <li>
+{/*                       <li>
                         <strong>Availability:</strong>{" "}
                         {profiles?.profile.workDetails.availability || "N/A"}
-                      </li>
+                      </li> */}
                       <li>
                         <strong>Experience:</strong>{" "}
                         {profiles?.profile.workDetails.experience || "N/A"}
@@ -113,7 +113,7 @@ export default function Home() {
 
                     {/* Render projects array */}
                     <div className="mt-4">
-                      <h4 className="font-semibold text-md">Projects:</h4>
+{/*                       <h4 className="font-semibold text-md">Projects:</h4>
                       {profiles?.profile.workDetails.projects?.length > 0 ? (
                         profiles.profile.workDetails.projects.map(
                           (project, index) => (
@@ -129,10 +129,10 @@ export default function Home() {
                                 <span>
                                   {openMovie[project.description] ? "↑" : "↓"}
                                 </span>
-                              </div>
+                              </div> */}
 
                               {/* Nested Accordion for project details */}
-                              {openMovie[project.description] && (
+{/*                               {openMovie[project.description] && (
                                 <div className="mt-2 bg-white p-4 rounded-lg shadow-inner">
                                   <ul className="list-disc list-inside text-sm space-y-1">
                                     <li>
@@ -149,13 +149,13 @@ export default function Home() {
                                     </li>
                                   </ul>
                                 </div>
-                              )}
-                            </div>
-                          )
-                        )
-                      ) : (
-                        <p>No projects available.</p>
-                      )}
+                              )} */}
+                            // </div>
+                      //     )
+                      //   )
+                      // ) : (
+                      //   <p>No projects available.</p>
+                      // )}
                     </div>
                   </div>
                 </div>
