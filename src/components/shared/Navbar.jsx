@@ -63,13 +63,7 @@ const Navbar = ({ showMenuItems = true }) => {
   const getMenuItems = () => {
     switch (user?.role) {
       case "Super Admin":
-        return [
-          "Dashboard",
-          "User Management",
-          "Reports",
-          "Settings",
-          "Admin Portal",
-        ];
+        return ["Dashboard", "Talent"];
       case "Company Admin":
         return [
           "Dashboard",
@@ -95,28 +89,15 @@ const Navbar = ({ showMenuItems = true }) => {
           "Task Management",
         ];
       case "crew":
-        return [
-          "Home",
-          "Application",
-          "Roles",
-          "Casting",
-          "Reports",
-          "Profile",
-        ];
+        return ["Application", "Roles", "Casting", "Reports", "Profile"];
       case "Project Manager":
         return ["Dashboard", "Tasks", "Team", "Reports", "Project Tasks"];
       case "talent":
-        return [
-          "Home",
-          "Casting Call",
-          "Auditions",
-          "My Applications",
-          "Profile",
-        ];
+        return ["Casting Call"];
       case "Public User":
-        return ["Home", "Casting Call", "About", "Contact"];
+        return ["Casting Call", "About", "Contact"];
       default:
-        return ["Home", "About", "Contact"];
+        return ["Casting Call", "About", "Contact"];
     }
   };
 
@@ -223,13 +204,13 @@ const Navbar = ({ showMenuItems = true }) => {
                             <DropdownMenuShortcut>⌘A</DropdownMenuShortcut>
                           </DropdownMenuItem>
                         </Link>
-                        <Link href="/User/profiles/update">
+                        {/* <Link href="/User/profiles/update">
                           <DropdownMenuItem>
                             <Settings className="mr-2 h-4 w-4" />
                             <span>Profile Update</span>
                             <DropdownMenuShortcut>⌘U</DropdownMenuShortcut>
                           </DropdownMenuItem>
-                        </Link>
+                        </Link> */}
                       </>
                     )}
                     {user?.role === "crew" && (

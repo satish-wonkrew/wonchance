@@ -38,7 +38,7 @@ const DOBPicker = ({ value, onDateChange }) => {
     };
     document.addEventListener('mousedown', handleClickOutside);
     return () => document.removeEventListener('mousedown', handleClickOutside);
-  }, [calendarRef]);
+  }, []);
 
   useEffect(() => {
     if (value) {
@@ -50,7 +50,6 @@ const DOBPicker = ({ value, onDateChange }) => {
 
   return (
     <div className="relative flex flex-col items-start space-y-3 font-serif">
-      {/* <label className="text-lg font-semibold text-gray-800 mb-1">Select Your Date of Birth</label> */}
       <div className="relative w-full">
         <div
           className="flex items-center border border-gray-300 rounded-full px-4 py-2 cursor-pointer hover:border-blue-600 transition duration-200 ease-in-out focus-within:ring-2 focus-within:ring-blue-500 shadow-md"
@@ -78,7 +77,11 @@ const DOBPicker = ({ value, onDateChange }) => {
                 <select
                   id="year"
                   value={date ? date.getFullYear() : ''}
-                  onChange={(e) => setDate(new Date(e.target.value, date.getMonth(), date.getDate()))}
+                  onChange={(e) => {
+                    const newYear = Number(e.target.value);
+                    const newDate = new Date(newYear, date.getMonth(), date.getDate());
+                    setDate(newDate);
+                  }}
                   className="border border-gray-300 rounded-lg p-2 transition duration-200 ease-in-out focus:border-blue-500"
                 >
                   {Array.from({ length: 100 }, (_, i) => new Date().getFullYear() - i).map((year) => (
@@ -93,7 +96,11 @@ const DOBPicker = ({ value, onDateChange }) => {
                 <select
                   id="month"
                   value={date ? date.getMonth() + 1 : ''}
-                  onChange={(e) => setDate(new Date(date.getFullYear(), e.target.value - 1, date.getDate()))}
+                  onChange={(e) => {
+                    const newMonth = Number(e.target.value) - 1;
+                    const newDate = new Date(date.getFullYear(), newMonth, date.getDate());
+                    setDate(newDate);
+                  }}
                   className="border border-gray-300 rounded-lg p-2 transition duration-200 ease-in-out focus:border-blue-500"
                 >
                   {Array.from({ length: 12 }, (_, i) => (

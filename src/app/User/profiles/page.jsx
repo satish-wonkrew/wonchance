@@ -308,12 +308,9 @@ const ProfileCard = () => {
 
               <>
                 <div className="flex gap-4 mt-4">
-                  {profile?.profile.socialMedia && (
+                  {profile?.profile.socialMedia?.facebook && (
                     <a
-                      href={
-                        profile?.profile.socialMedia.facebook ||
-                        "https://www.facebook.com/"
-                      }
+                      href={profile.profile.socialMedia.facebook}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="text-blue-600 hover:text-blue-800"
@@ -321,12 +318,9 @@ const ProfileCard = () => {
                       <FaFacebook className="text-2xl" />
                     </a>
                   )}
-                  {profile?.profile.socialMedia && (
+                  {profile?.profile.socialMedia?.instagram && (
                     <a
-                      href={
-                        profile?.profile.socialMedia.instagram ||
-                        "https://www.instagram.com/"
-                      }
+                      href={profile.profile.socialMedia.instagram}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="text-pink-600 hover:text-pink-800"
@@ -334,26 +328,22 @@ const ProfileCard = () => {
                       <BsInstagram className="text-2xl" />
                     </a>
                   )}
-                  {profile?.profile.socialMedia && (
+                  {profile?.profile.socialMedia?.twitter && (
                     <a
-                      href={
-                        profile?.profile.socialMedia.twitter ||
-                        "https://www.twitter.com"
-                      }
-                      className="text-blue-400 hover:text-blue-600"
+                      href={profile.profile.socialMedia.twitter}
                       target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-blue-400 hover:text-blue-600"
                     >
                       <FaTwitterSquare className="text-2xl" />
                     </a>
                   )}
-                  {/* Add Youtube */}
-                  {profile?.profile.socialMedia && (
+                  {profile?.profile.socialMedia?.youtube && (
                     <a
-                      href={
-                        profile.profile.socialMedia.youtube ||
-                        "https://www.youtube.com/"
-                      }
+                      href={profile.profile.socialMedia.youtube}
                       target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-red-600 hover:text-red-800"
                     >
                       <BsYoutube className="text-2xl" />
                     </a>

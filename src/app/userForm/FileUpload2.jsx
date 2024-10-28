@@ -1,44 +1,18 @@
 /* eslint-disable @next/next/no-img-element */
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import axios from "axios";
 import { USER_API_END_POINT } from "@/utils/constant";
 import axiosInstance from "@/utils/axiosInstance";
 import { toast } from "sonner";
-import { useUser } from "@/hooks/useUser"; // Import your user hook
 import { useRouter } from "next/navigation";
 
 const FileUpload = ({ userIds, prevStep }) => {
-  const { userData, isLoading, error } = useUser(); // Fetch user data using your hook
   const [profilePicture, setProfilePicture] = useState(null);
   const [galleryPhotos, setGalleryPhotos] = useState([]);
   const [galleryVideos, setGalleryVideos] = useState([]);
-  const router = useRouter(); // Access the router object
-
-  useEffect(() => {
-    if (userData) {
-      setGalleryPhotos(userData.user.galleryDetails.photos || []);
-      setGalleryVideos(userData.user.galleryDetails.videos || []);
-      setProfilePicture(
-        userData.user.profilePictureUrl ? null : userData.user.profilePictureUrl
-      ); // Set the initial profile picture
-    }
-  }, [userData]);
-  console.log("====================================");
-  console.log(
-    "userIds",
-    userIds,
-    "galleryPhotos",
-    galleryPhotos,
-    "galleryVideos",
-    galleryVideos,
-    "profilePicture",
-    profilePicture,
-    "userData",
-    userData
-  );
-  console.log("====================================");
+  const router = useRouter();
 
   const handleProfileChange = (e) => {
     setProfilePicture(e.target.files[0]);
@@ -97,10 +71,8 @@ const FileUpload = ({ userIds, prevStep }) => {
     for (const video of galleryVideos) {
       await handleUpload(video, "gallery");
     }
-
-    // Navigate to the profile page and refresh it
     router.push(`/User/profiles`);
-    router.refresh(); // Refresh the page data
+    router.refresh();
   };
 
   const removePhoto = (index) => {
@@ -112,9 +84,6 @@ const FileUpload = ({ userIds, prevStep }) => {
     const updatedVideos = galleryVideos.filter((_, i) => i !== index);
     setGalleryVideos(updatedVideos);
   };
-
-  if (isLoading) return <div>Loading...</div>;
-  if (error) return <div>Error loading user data</div>;
 
   return (
     <div className="p-6 max-w-4xl mx-auto">
@@ -144,16 +113,9 @@ const FileUpload = ({ userIds, prevStep }) => {
             </button>
           </div>
         )}
-        {userData?.profilePictureUrl && !profilePicture && (
-          <div className="flex items-center mb-4">
-            <img
-              src={userData.profilePictureUrl}
-              alt="Existing Profile"
-              className="w-16 h-16 rounded-full object-cover mr-2 border-2 border-gray-500 shadow-md"
-            />
-            <span>Existing Profile Picture</span>
-          </div>
-        )}
+        {/* <button className="mb-6 px-4 py-2 bg-blue-500 text-white rounded shadow hover:bg-blue-600 transition duration-200">
+          Upload All
+        </button> */}
 
         <h2 className="text-2xl font-semibold mb-4">
           Upload Gallery Photos <span className="text-red-500">*</span>
@@ -180,18 +142,6 @@ const FileUpload = ({ userIds, prevStep }) => {
               >
                 &times;
               </button>
-            </div>
-          ))}
-          {userData?.galleryDetails.photos.map((photoUrl, index) => (
-            <div key={index} className="relative w-24 h-24 m-2">
-              <img
-                src={photoUrl}
-                alt={`Existing Gallery Photo ${index + 1}`}
-                className="w-full h-full rounded-md object-cover border-2 border-gray-300 shadow-md"
-              />
-              <span className="absolute top-1 right-1 bg-gray-500 text-white rounded-full p-1">
-                ✓
-              </span>
             </div>
           ))}
         </div>
@@ -222,19 +172,6 @@ const FileUpload = ({ userIds, prevStep }) => {
               >
                 &times;
               </button>
-            </div>
-          ))}
-          {userData?.galleryDetails.videos.map((videoUrl, index) => (
-            <div key={index} className="relative w-24 h-24 m-2">
-              <video
-                src={videoUrl}
-                alt={`Existing Gallery Video ${index + 1}`}
-                className="w-full h-full rounded-md object-cover border-2 border-gray-300 shadow-md"
-                controls
-              />
-              <span className="absolute top-1 right-1 bg-gray-500 text-white rounded-full p-1">
-                ✓
-              </span>
             </div>
           ))}
         </div>

@@ -184,13 +184,13 @@ const Login = () => {
                 window.location.reload();
               }, 2000);
             } else {
-              router.push("/dashboard");
+              router.push("/");
               setTimeout(() => {
                 window.location.reload();
               }, 2000);
             }
           } else {
-            router.push("/dashboard");
+            router.push("/");
             setTimeout(() => {
               window.location.reload();
             }, 2000);
