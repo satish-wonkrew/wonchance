@@ -134,7 +134,6 @@ export default function Home() {
             </div>
 
             {/* Work Links Section */}
-            
           </div>
 
           {/* Right Side Accordions */}
@@ -167,7 +166,7 @@ export default function Home() {
               )}
             </div>
 
-            {/* Comfortable Section 1 */}
+            {/* Comfortable With Section */}
             <div className="bg-white shadow-lg rounded-lg p-4 transition duration-300 ease-in-out hover:shadow-xl">
               <div
                 className="flex justify-between cursor-pointer items-center"
@@ -180,7 +179,11 @@ export default function Home() {
                 <ul className="mt-2 text-sm space-y-1">
                   {profiles?.profile.interests.comfortableWith?.length > 0 ? (
                     profiles.profile.interests.comfortableWith.map(
-                      (item, index) => <li key={index}>{item}</li>
+                      (item, index) => (
+                        <li key={index} className="mr-4 mb-2">
+                          {item}
+                        </li>
+                      )
                     )
                   ) : (
                     <li>No preferences listed.</li>
@@ -219,26 +222,50 @@ export default function Home() {
             </div>
 
             {/* Interested Shoots Section */}
-            <div className="bg-white shadow-lg rounded-lg p-4 transition duration-300 ease-in-out hover:shadow-xl">
-              <div
-                className="flex justify-between cursor-pointer items-center"
-                onClick={() => toggleSection("interestedShoots")}
-              >
-                <span className="font-semibold">Interested Shoots</span>
-                <span>{openSections.interestedShoots ? "↑" : "↓"}</span>
-              </div>
-              {openSections.interestedShoots && (
-                <ul>
-                  {profiles?.profile.interests.interestedShoots?.length > 0 ? (
-                    profiles.profile.interests.interestedShoots.map(
+            {profiles?.profile.interests.interestedShoots?.length > 0 && (
+              <div className="bg-white shadow-lg rounded-lg p-4 transition duration-300 ease-in-out hover:shadow-xl">
+                <div
+                  className="flex justify-between cursor-pointer items-center"
+                  onClick={() => toggleSection("interestedShoots")}
+                >
+                  <span className="font-semibold">Interested Shoots</span>
+                  <span>{openSections.interestedShoots ? "↑" : "↓"}</span>
+                </div>
+                {openSections.interestedShoots && (
+                  <ul>
+                    {profiles.profile.interests.interestedShoots.map(
                       (shoot, index) => (
                         <li key={index} className="mt-2 text-sm">
                           {shoot}
                         </li>
                       )
+                    )}
+                  </ul>
+                )}
+              </div>
+            )}
+
+            {/*Interested Role Section */}
+            <div className="bg-white shadow-lg rounded-lg p-4 transition duration-300 ease-in-out hover:shadow-xl">
+              <div
+                className="flex justify-between cursor-pointer items-center"
+                onClick={() => toggleSection("interestedRole")}
+              >
+                <span className="font-semibold">Interested Role</span>
+                <span>{openSections.interestedRole ? "↑" : "↓"}</span>
+              </div>
+              {openSections.interestedRole && (
+                <ul>
+                  {profiles?.profile.interests.interestedRoles?.length > 0 ? (
+                    profiles.profile.interests.interestedRoles.map(
+                      (role, index) => (
+                        <li key={index} className="mt-2 text-sm">
+                          {role}
+                        </li>
+                      )
                     )
                   ) : (
-                    <li className="mt-2 text-sm">No shoot interests listed.</li>
+                    <li className="mt-2 text-sm">No role interests listed.</li>
                   )}
                 </ul>
               )}

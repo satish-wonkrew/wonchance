@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import Image from "next/image";
 import {
   FaFacebook,
@@ -21,13 +21,20 @@ import Link from "next/link"; // Import Link for navigating to update page
 import { BreadcrumbSection } from "@/components/etc/Breadcrumb";
 import { Skeleton } from "@/components/Skeleton";
 import { IMAGE_API_END_POINT } from "@/utils/constant";
+import { useRouter } from "next/navigation";
 
 const ProfileCard = () => {
   const { user, status, error } = useUser();
   const profile = user;
-  console.log("====================================");
-  console.log(profile);
-  console.log("====================================");
+  const router = useRouter();
+  const hasReloaded = useRef(false);
+
+  useEffect(() => {
+    if (user && !hasReloaded.current) {
+      hasReloaded.current = true; // Mark as reloaded
+      window.location.reload();
+    }
+  }, []);
 
   const rating = Math.floor(Math.random() * 5) + 1;
   const calculateAge = (dob) => {
@@ -80,7 +87,7 @@ const ProfileCard = () => {
                   : "Profile Picture"
               }
               layout="fill"
-              objectFit="contain"
+              objectFit="cover"
               className="rounded-lg shadow-md"
             />
 
@@ -150,13 +157,28 @@ const ProfileCard = () => {
                   {profile?.profile.lastName || "Not Specified"}
                 </p>
                 {/* Phone and Whatsapp  */}
-                <p>
-                  <strong>Phone:</strong>{" "}
-                  {profile?.phoneNumber || "Not Specified"}
-                </p>
+
                 <p>
                   <strong>Whatsapp:</strong>{" "}
                   {profile?.whatsappNumber || "Not Specified"}
+                </p>
+                {/* Age */}
+                <p>
+                  <strong>Age:</strong> {age || "Not Specified"}
+                </p>
+                {/* Date Of Birth with date format */}
+                <p>
+                  <strong>Date Of Birth:</strong>{" "}
+                  {profile?.profile.dateOfBirth
+                    ? new Date(profile.profile.dateOfBirth).toLocaleDateString(
+                        "en-US",
+                        {
+                          year: "numeric",
+                          month: "long",
+                          day: "numeric",
+                        }
+                      )
+                    : "Not Specified"}
                 </p>
                 {/* Father And Mother Name */}
                 <p>
@@ -338,132 +360,135 @@ const ProfileCard = () => {
                   )}
                 </div>
               </>
+              <div className="mt-6">
+                <p className="font-bold text-lg mb-2">Skills:</p>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  {profile?.profile.skillDetails && (
+                    <>
+                      {/* Dance Style */}
+                      {profile?.profile.skillDetails.danceStyle?.length > 0 && (
+                        <div>
+                          <p className="font-semibold">Dance Style:</p>
+                          <div className="flex flex-wrap gap-2 mt-1">
+                            {profile?.profile.skillDetails.danceStyle.map(
+                              (style, index) => (
+                                <span
+                                  key={`danceStyle-${index}`}
+                                  className="px-3 py-1 bg-blue-200 dark:bg-blue-700 rounded-full text-sm shadow"
+                                >
+                                  {style}
+                                </span>
+                              )
+                            )}
+                          </div>
+                        </div>
+                      )}
+
+                      {/* Driving */}
+                      {profile?.profile.skillDetails.driving?.length > 0 && (
+                        <div>
+                          <p className="font-semibold">Driving:</p>
+                          <div className="flex flex-wrap gap-2 mt-1">
+                            {profile.profile.skillDetails.driving.map(
+                              (type, index) => (
+                                <span
+                                  key={`driving-${index}`}
+                                  className="px-3 py-1 bg-green-200 dark:bg-green-700 rounded-full text-sm shadow"
+                                >
+                                  {type}
+                                </span>
+                              )
+                            )}
+                          </div>
+                        </div>
+                      )}
+
+                      {/* Singing */}
+                      {profile?.profile.skillDetails.singing?.length > 0 && (
+                        <div>
+                          <p className="font-semibold">Singing:</p>
+                          <div className="flex flex-wrap gap-2 mt-1">
+                            {profile?.profile.skillDetails.singing.map(
+                              (type, index) => (
+                                <span
+                                  key={`singing-${index}`}
+                                  className="px-3 py-1 bg-yellow-200 dark:bg-yellow-700 rounded-full text-sm shadow"
+                                >
+                                  {type}
+                                </span>
+                              )
+                            )}
+                          </div>
+                        </div>
+                      )}
+
+                      {/* Martial Arts */}
+                      {profile?.profile.skillDetails.martialArts?.length >
+                        0 && (
+                        <div>
+                          <p className="font-semibold">Martial Arts:</p>
+                          <div className="flex flex-wrap gap-2 mt-1">
+                            {profile?.profile.skillDetails.martialArts.map(
+                              (type, index) => (
+                                <span
+                                  key={`martialArts-${index}`}
+                                  className="px-3 py-1 bg-red-200 dark:bg-red-700 rounded-full text-sm shadow"
+                                >
+                                  {type}
+                                </span>
+                              )
+                            )}
+                          </div>
+                        </div>
+                      )}
+
+                      {/* Water Activities */}
+                      {profile?.profile.skillDetails.waterActivities?.length >
+                        0 && (
+                        <div>
+                          <p className="font-semibold">Water Activities:</p>
+                          <div className="flex flex-wrap gap-2 mt-1">
+                            {profile?.profile.skillDetails.waterActivities.map(
+                              (activity, index) => (
+                                <span
+                                  key={`waterActivites-${index}`}
+                                  className="px-3 py-1 bg-teal-200 dark:bg-teal-700 rounded-full text-sm shadow"
+                                >
+                                  {activity}
+                                </span>
+                              )
+                            )}
+                          </div>
+                        </div>
+                      )}
+
+                      {/* Certifications */}
+                      {profile?.profile.skillDetails.certifications?.length >
+                        0 && (
+                        <div>
+                          <p className="font-semibold">Certifications:</p>
+                          <div className="flex flex-wrap gap-2 mt-1">
+                            {profile?.profile.skillDetails.certifications.map(
+                              (cert, index) => (
+                                <span
+                                  key={`certification-${index}`}
+                                  className="px-3 py-1 bg-purple-200 dark:bg-purple-700 rounded-full text-sm shadow"
+                                >
+                                  {cert}
+                                </span>
+                              )
+                            )}
+                          </div>
+                        </div>
+                      )}
+                    </>
+                  )}
+                </div>
+              </div>
             </div>
           </div>
 
           {/* Skills Section */}
-          <div className="mt-6">
-            <p className="font-bold text-lg mb-2">Skills:</p>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              {profile?.profile.skillDetails && (
-                <>
-                  {/* Dance Style */}
-                  {profile?.profile.skillDetails.danceStyle?.length > 0 && (
-                    <div>
-                      <p className="font-semibold">Dance Style:</p>
-                      <div className="flex flex-wrap gap-2 mt-1">
-                        {profile?.profile.skillDetails.danceStyle.map(
-                          (style, index) => (
-                            <span
-                              key={`danceStyle-${index}`}
-                              className="px-3 py-1 bg-blue-200 dark:bg-blue-700 rounded-full text-sm shadow"
-                            >
-                              {style}
-                            </span>
-                          )
-                        )}
-                      </div>
-                    </div>
-                  )}
-
-                  {/* Driving */}
-                  {profile?.profile.skillDetails.driving?.length > 0 && (
-                    <div>
-                      <p className="font-semibold">Driving:</p>
-                      <div className="flex flex-wrap gap-2 mt-1">
-                        {profile.profile.skillDetails.driving.map(
-                          (type, index) => (
-                            <span
-                              key={`driving-${index}`}
-                              className="px-3 py-1 bg-green-200 dark:bg-green-700 rounded-full text-sm shadow"
-                            >
-                              {type}
-                            </span>
-                          )
-                        )}
-                      </div>
-                    </div>
-                  )}
-
-                  {/* Singing */}
-                  {profile?.profile.skillDetails.singing?.length > 0 && (
-                    <div>
-                      <p className="font-semibold">Singing:</p>
-                      <div className="flex flex-wrap gap-2 mt-1">
-                        {profile?.profile.skillDetails.singing.map(
-                          (type, index) => (
-                            <span
-                              key={`singing-${index}`}
-                              className="px-3 py-1 bg-yellow-200 dark:bg-yellow-700 rounded-full text-sm shadow"
-                            >
-                              {type}
-                            </span>
-                          )
-                        )}
-                      </div>
-                    </div>
-                  )}
-
-                  {/* Martial Arts */}
-                  {profile?.profile.skillDetails.martialArts?.length > 0 && (
-                    <div>
-                      <p className="font-semibold">Martial Arts:</p>
-                      <div className="flex flex-wrap gap-2 mt-1">
-                        {profile?.profile.skillDetails.martialArts.map(
-                          (type, index) => (
-                            <span
-                              key={`martialArts-${index}`}
-                              className="px-3 py-1 bg-red-200 dark:bg-red-700 rounded-full text-sm shadow"
-                            >
-                              {type}
-                            </span>
-                          )
-                        )}
-                      </div>
-                    </div>
-                  )}
-
-                  {/* Water Activities */}
-                  {profile?.profile.skillDetails.waterActivites?.length > 0 && (
-                    <div>
-                      <p className="font-semibold">Water Activities:</p>
-                      <div className="flex flex-wrap gap-2 mt-1">
-                        {profile?.profile.skillDetails.waterActivites.map(
-                          (activity, index) => (
-                            <span
-                              key={`waterActivites-${index}`}
-                              className="px-3 py-1 bg-teal-200 dark:bg-teal-700 rounded-full text-sm shadow"
-                            >
-                              {activity}
-                            </span>
-                          )
-                        )}
-                      </div>
-                    </div>
-                  )}
-
-                  {/* Certifications */}
-                  {profile?.profile.skillDetails.certifications?.length > 0 && (
-                    <div>
-                      <p className="font-semibold">Certifications:</p>
-                      <div className="flex flex-wrap gap-2 mt-1">
-                        {profile?.profile.skillDetails.certifications.map(
-                          (cert, index) => (
-                            <span
-                              key={`certification-${index}`}
-                              className="px-3 py-1 bg-purple-200 dark:bg-purple-700 rounded-full text-sm shadow"
-                            >
-                              {cert}
-                            </span>
-                          )
-                        )}
-                      </div>
-                    </div>
-                  )}
-                </>
-              )}
-            </div>
-          </div>
         </div>
       </div>
       <Gallery />

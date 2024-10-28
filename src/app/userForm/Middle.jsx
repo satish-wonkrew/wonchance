@@ -10,7 +10,7 @@ import languageOptions from "@/data/languageOptions.json";
 import interestOptions from "@/data/interestOptions.json";
 import skillOptions from "@/data/skillOptions.json";
 import { useUser } from "@/hooks/useUser";
-const comfortableclothing = {
+const comfortableClothing = {
   "Casual wear": {
     hideForMaleKids: true,
     hideForFemaleKids: true,
@@ -127,7 +127,7 @@ const comfortableclothing = {
   },
 };
 
-const interestedIn = {
+const comfortableWith = {
   "Body painting": {
     hideForMaleAdults: false,
     hideForFemaleAdults: false,
@@ -276,7 +276,7 @@ const MidlleInfo = ({ nextStep, prevStep, onFormDataChange, formData }) => {
     interestedMedia: formData.profile?.interests?.interestedMedia || [],
     interestedRoles: formData.profile?.interests?.interestedRoles || [],
     comfortableWith: formData.profile?.interests?.comfortableWith || [],
-    comfortableclothing: formData.profile?.interests?.comfortableclothing || [],
+    comfortableClothing: formData.profile?.interests?.comfortableClothing || [],
     interestedShoots: formData.profile?.interests?.interestedShoots || [],
   });
   const [tattoos, setTattoos] = useState(
@@ -1037,16 +1037,16 @@ const MidlleInfo = ({ nextStep, prevStep, onFormDataChange, formData }) => {
                       </h3>
                       <Select
                         isMulti
-                        options={getAvailableOptions(comfortableclothing)}
+                        options={getAvailableOptions(comfortableClothing)}
                         isDisabled={!gender || !ageGroup} // Disable if gender or age group is not selected
                         onChange={(selectedOptions) =>
                           handleInterestsChange(
                             selectedOptions,
-                            "comfortableclothing"
+                            "comfortableClothing"
                           )
                         }
                         styles={customStyles}
-                        value={interests.comfortableclothing.map((item) => ({
+                        value={interests.comfortableClothing.map((item) => ({
                           value: item,
                           label: item,
                         }))}
@@ -1061,12 +1061,12 @@ const MidlleInfo = ({ nextStep, prevStep, onFormDataChange, formData }) => {
                   <Select
                     styles={customStyles}
                     isMulti
-                    options={getAvailableOptions(interestedIn)}
+                    options={getAvailableOptions(comfortableWith)}
                     isDisabled={!gender || !ageGroup}
                     onChange={(selectedOptions) =>
-                      handleInterestsChange(selectedOptions, "interestedIn")
+                      handleInterestsChange(selectedOptions, "comfortableWith")
                     }
-                    value={interests.interestedIn?.map((item) => ({
+                    value={interests.comfortableWith?.map((item) => ({
                       value: item,
                       label: item,
                     }))}

@@ -199,33 +199,28 @@ const workdetails = ({ profile }) => {
               </div>
 
               {/* Interested Shoots Section */}
-              <div className="bg-white shadow-lg rounded-lg p-4 transition duration-300 ease-in-out hover:shadow-xl">
-                <div
-                  className="flex justify-between cursor-pointer items-center"
-                  onClick={() => toggleSection("interestedShoots")}
-                >
-                  <span className="font-semibold">Interested Shoots</span>
-                  <span>{openSections.interestedShoots ? "↑" : "↓"}</span>
-                </div>
-                {openSections.interestedShoots && (
-                  <ul>
-                    {profiles?.profile.interests.interestedShoots?.length >
-                    0 ? (
-                      profiles.profile.interests.interestedShoots.map(
+              {profiles?.profile.interests.interestedShoots?.length > 0 && (
+                <div className="bg-white shadow-lg rounded-lg p-4 transition duration-300 ease-in-out hover:shadow-xl">
+                  <div
+                    className="flex justify-between cursor-pointer items-center"
+                    onClick={() => toggleSection("interestedShoots")}
+                  >
+                    <span className="font-semibold">Interested Shoots</span>
+                    <span>{openSections.interestedShoots ? "↑" : "↓"}</span>
+                  </div>
+                  {openSections.interestedShoots && (
+                    <ul>
+                      {profiles.profile.interests.interestedShoots.map(
                         (shoot, index) => (
                           <li key={index} className="mt-2 text-sm">
                             {shoot}
                           </li>
                         )
-                      )
-                    ) : (
-                      <li className="mt-2 text-sm">
-                        No shoot interests listed.
-                      </li>
-                    )}
-                  </ul>
-                )}
-              </div>
+                      )}
+                    </ul>
+                  )}
+                </div>
+              )}
             </div>
           </div>
         </div>

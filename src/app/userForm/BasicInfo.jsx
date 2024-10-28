@@ -21,9 +21,6 @@ const BasicInfo = ({ nextStep, prevStep, onFormDataChange, formData }) => {
   const profiltype = user.user?.ageGroup;
   const ageGroup = profiltype;
 
-  console.log("====================================");
-  console.log(ageGroup);
-  console.log("====================================");
   useEffect(() => {
     if (dateOfBirth) {
       const calculateAge = (dob) => {
@@ -131,7 +128,7 @@ const BasicInfo = ({ nextStep, prevStep, onFormDataChange, formData }) => {
               type="number"
               id="age"
               name="age"
-              value={age}
+              value={formData.profile?.age}
               readOnly
               className="mt-1 bg-gray-100 border border-gray-300 rounded-md py-2 px-3 w-full"
             />
