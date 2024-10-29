@@ -19,17 +19,24 @@ const Gallery = ({ profile }) => {
     setSelectedItem(null);
   };
 
-  const photosWithBaseUrl =
-    profile.galleryDetails?.photos?.map((photo) => photo.replace(/\\/g, "/")) ||
-    [];
-  
+  // Safeguard against null values
+  const photosWithBaseUrl = Array.isArray(profile.galleryDetails?.photos)
+    ? profile.galleryDetails.photos.map((photo) => photo?.replace(/\\/g, "/"))
+    : [];
+
   const items = [
     ...(photosWithBaseUrl.map((src) => ({ src, type: "image" })) || []),
-    ...(profile?.galleryDetails?.videos?.map((src) => ({
-      src,
-      type: "video",
-      thumbnail: `${src.replace("videos", "thumbnails")}.jpg`, // Adjust path as needed
-    })) || []),
+    ...(Array.isArray(profile.galleryDetails?.videos)
+      ? profile.galleryDetails.videos.map((src) => {
+          const thumbnail = `${src.replace("videos", "Img/Logo")}.png`;
+          return {
+            src,
+            type: "video",
+            thumbnail: thumbnail.startsWith("/") ? thumbnail : `/${thumbnail}`, // Ensure leading slash
+            defaultThumbnail: "/Img/Logo.png", // Path to default thumbnail
+          };
+        })
+      : []),
   ];
 
   return (
@@ -64,12 +71,31 @@ const Gallery = ({ profile }) => {
               {item.type === "video" ? (
                 <div className="relative">
                   <Image
-                    src={item.thumbnail || "/play.png"} // Placeholder play icon overlay
+                    src={item.defaultThumbnail} // Use default thumbnail if none exists
                     width={400}
                     height={300}
                     alt="Video thumbnail"
-                    className="absolute inset-0 m-auto h-full w-full object-cover opacity-90"
+                    style={
+                      item.thumbnail
+                        ? { objectFit: "contain" }
+                        : { objectFit: "contain" } // Fallback to contain if no thumbnail exists
+                    }
+                    className="absolute inset-0 m-auto h-full w-full object-cover opacity-90" // Changed to object-cover for better scaling
                   />
+                  <div className="absolute inset-0 flex items-center justify-center">
+                    <Image
+                      src="/play.png" // Path to your play button image
+                      alt="Play"
+                      width={60} // Adjust width as necessary
+                      height={60} // Adjust height as necessary
+                      style={
+                        item.thumbnail
+                          ? { objectFit: "contain" }
+                          : { objectFit: "contain" } // Fallback to contain if no thumbnail exists
+                      }
+                      className="opacity-100 hover:opacity-100 transition-opacity duration-300" // Ensure visibility
+                    />
+                  </div>
                   <Image
                     src={item.src}
                     alt="Video thumbnail"
@@ -122,17 +148,26 @@ const Gallery = ({ profile }) => {
               </svg>
             </button>
             {selectedItem.type === "video" ? (
-              <video
+              <iframe
                 src={selectedItem.src}
-                controls
-                autoPlay
-                className="w-full h-auto rounded-lg object-contain max-w-4xl max-h-[80vh]"
-              />
+                className="w-full h-auto rounded-lg"
+                style={{
+                  aspectRatio: "16/9",
+                  maxWidth: "800px",
+                  maxHeight: "600px",
+                  pointerEvents: "none",
+                }} // Adjust aspect ratio
+                frameBorder="0"
+                allow="autoplay; encrypted-media"
+                allowFullScreen
+                title="video"
+              ></iframe>
             ) : (
               <img
                 src={selectedItem.src}
                 alt="Selected"
-                className="w-full h-auto rounded-lg object-contain max-w-4xl max-h-[80vh]"
+                className="w-full h-auto rounded-lg object-contain"
+                style={{ maxWidth: "800px", maxHeight: "600px" }} // Restrict modal image size
               />
             )}
           </div>
