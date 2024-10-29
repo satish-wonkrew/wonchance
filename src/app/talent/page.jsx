@@ -268,7 +268,7 @@ const TalentPage = () => {
                   "https://media.istockphoto.com/id/1327592449/vector/default-avatar-photo-placeholder-icon-grey-profile-picture-business-man.jpg?s=170667a&w=0&k=20&c=qDvsvfQdmm_cvI_BQH4PdIt8-P-VDAq7ufOobicPBu0="
                 }
                 alt={talent?.profile?.screenName || "Talent Profile"}
-                className="object-cover w-full h-full"
+                className="object-contain w-full h-full"
               />
               {/* Overlay */}
               <div className="absolute inset-0 bg-black opacity-5 pointer-events-none"></div>
@@ -299,24 +299,24 @@ const TalentPage = () => {
                 {talent?.profile?.screenName || "Wonchance Talent"}
               </h2> */}
               <p className="text-gray-600 dark:text-gray-300 mb-2">
-                <strong>Profile ID:</strong> {talent?.wctId || "N/A"}
+                {talent?.wctId || "N/A"}
               </p>
-              <p className="text-gray-600 dark:text-gray-300 mb-4">
+              {/* <p className="text-gray-600 dark:text-gray-300 mb-4">
                 {authenticated
                   ? `Bio: ${
                       talent?.bio ||
                       "🎬 Actor exploring the world of cinema. Follow along for behind-the-scenes content!"
                     }`
                   : "Please log in to see more details."}
-              </p>
+              </p> */}
               {viewMode === "row" && authenticated && (
                 <div className="flex flex-wrap gap-4">
-                  <p className="text-sm text-gray-600 dark:text-gray-300">
+                  {/* <p className="text-sm text-gray-600 dark:text-gray-300">
                     <strong>Height:</strong>{" "}
                     {talent?.profile?.physicalDetails?.height
                       ? `${talent.profile.physicalDetails.height} CM`
                       : "N/A"}
-                  </p>
+                  </p> */}
                   <p className="text-sm text-gray-600 dark:text-gray-300">
                     <strong>Age:</strong> {talent?.age || "N/A"}
                   </p>
@@ -335,10 +335,10 @@ const TalentPage = () => {
                   <p className="text-sm text-gray-600 dark:text-gray-300 mb-2">
                     <strong>Age:</strong> {talent?.age || "N/A"}
                   </p>
-                  <p className="text-sm text-gray-600 dark:text-gray-300 mb-2">
+                  {/* <p className="text-sm text-gray-600 dark:text-gray-300 mb-2">
                     <strong>Height:</strong>{" "}
                     {talent?.profile?.physicalDetails?.height || "N/A"}
-                  </p>
+                  </p> */}
                 </>
               )}
               {authenticated ? (

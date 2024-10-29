@@ -517,7 +517,7 @@ const Login = () => {
                 </div>
 
                 {/* Profile Type Adult Or Kid Radio Buutn */}
-                <Label className="mt-3">Profile Type</Label>
+                <Label className="mt-3">My Self or Child</Label>
                 <span className="text-red-600">*</span>
                 <div className="flex gap-2">
                   <input

@@ -17,7 +17,7 @@ export const AuthProvider = ({ children }) => {
 
     const login = async (whatsappNumber, otp) => {
         try {
-            const response = await axios.post('https://api.wonchance.com/api/verify-otp', {
+            const response = await axios.post('http://localhost:5000/api/verify-otp', {
                 whatsappNumber,
                 otp
             });
@@ -48,7 +48,7 @@ export const AuthProvider = ({ children }) => {
     const fetchUserProfile = async () => {
         if (!authState?.token) return;
         try {
-            const response = await axios.get('https://api.wonchance.com/api/me', {
+            const response = await axios.get('http://localhost:5000/api/me', {
                 headers: { Authorization: `Bearer ${authState.token}` },
             });
             setAuthState(prev => ({ ...prev, user: response.data }));
@@ -63,7 +63,7 @@ export const AuthProvider = ({ children }) => {
     const updateUserProfile = async (updatedData) => {
         if (!authState?.token) return;
         try {
-            const response = await axios.put('https://api.wonchance.com/api/user/profile', updatedData, {
+            const response = await axios.put('http://localhost:5000/api/user/profile', updatedData, {
                 headers: { Authorization: `Bearer ${authState.token}` },
             });
             setAuthState(prev => ({ ...prev, user: response.data }));

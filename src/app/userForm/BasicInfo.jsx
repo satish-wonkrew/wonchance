@@ -117,7 +117,7 @@ const BasicInfo = ({ nextStep, prevStep, onFormDataChange, formData }) => {
             <DateOfBirthPicker
               value={formData.profile?.dateOfBirth}
               onDateChange={handleDateChange}
-              required
+             
             />
           </div>
 

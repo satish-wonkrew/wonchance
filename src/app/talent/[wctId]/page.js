@@ -46,7 +46,7 @@ const ProfilePage = () => {
         const token = localStorage.getItem("token");
 
         const { data } = await axios.get(
-          `https://api.wonchance.com/api/talent/${wctId}`,
+          `http://localhost:5000/api/talent/${wctId}`,
           {
             headers: { Authorization: `Bearer ${token}` },
           }
@@ -90,7 +90,7 @@ const ProfilePage = () => {
   const profiles = profile;
   const photosWithBaseUrl =
     profile.galleryDetails?.photos?.map((photo) => {
-      return `${photo.replace(/\\/g, "/")}`; // Convert to valid URL format
+      return `${photo?.replace(/\\/g, "/")}`; // Convert to valid URL format
     }) || [];
   // Combine photos and videos into a single array with type information
   const items = [
@@ -229,10 +229,10 @@ const ProfilePage = () => {
                     {profile.profile.lastName || "Not Specified"}
                   </p>
                   {/* Phone and Whatsapp  */}
-                  <p>
+                  {/* <p>
                     <strong>Phone:</strong>{" "}
                     {profile.phoneNumber || "Not Specified"}
-                  </p>
+                  </p> */}
                   <p>
                     <strong>Whatsapp:</strong>{" "}
                     {profile.whatsappNumber || "Not Specified"}

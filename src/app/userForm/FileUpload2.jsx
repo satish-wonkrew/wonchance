@@ -26,51 +26,60 @@ const FileUpload = ({ userIds, prevStep }) => {
     setGalleryVideos([...e.target.files]);
   };
 
-  const handleUpload = async (file, endpoint) => {
+  const handleUpload = async () => {
     const formData = new FormData();
-    formData.append(
-      endpoint === "profile" ? "profilePicture" : "gallery",
-      file
-    );
 
-    try {
-      const response = await axiosInstance.post(
-        `${USER_API_END_POINT}/${endpoint}/${userIds}`,
-        formData,
-        {
-          headers: {
-            "Content-Type": "multipart/form-data",
-          },
-        }
-      );
-      console.log(
-        `${
-          endpoint.charAt(0).toUpperCase() + endpoint.slice(1)
-        } upload successful:`,
-        response.data
-      );
-      toast(
-        `${
-          endpoint.charAt(0).toUpperCase() + endpoint.slice(1)
-        } upload successful`
-      );
-    } catch (error) {
-      console.error(`Error uploading ${endpoint}:`, error);
-    }
-  };
-
-  const handleSequentialUploads = async () => {
+    // Upload profile picture if it exists
     if (profilePicture) {
-      await handleUpload(profilePicture, "profile");
+      formData.append("profilePicture", profilePicture);
+      try {
+        const profileResponse = await axiosInstance.post(
+          `${USER_API_END_POINT}/profile/${userIds}`,
+          formData,
+          {
+            headers: {
+              "Content-Type": "multipart/form-data",
+            },
+          }
+        );
+        console.log("Profile picture upload successful:", profileResponse.data);
+        toast("Profile picture upload successful");
+      } catch (error) {
+        console.error("Error uploading profile picture:", error);
+        toast.error("Error uploading profile picture");
+        return; // Exit if the profile picture upload fails
+      }
     }
 
-    for (const photo of galleryPhotos) {
-      await handleUpload(photo, "gallery");
-    }
+    // Function to upload files sequentially
+    const uploadFiles = async (files) => {
+      for (let file of files) {
+        const fileFormData = new FormData();
+        fileFormData.append("gallery", file); // Match this with your backend
 
-    for (const video of galleryVideos) {
-      await handleUpload(video, "gallery");
-    }
+        try {
+          const galleryResponse = await axiosInstance.post(
+            `${USER_API_END_POINT}/gallery/${userIds}`,
+            fileFormData,
+            {
+              headers: {
+                "Content-Type": "multipart/form-data",
+              },
+            }
+          );
+          console.log("Gallery upload successful:", galleryResponse.data);
+          toast("Gallery media upload successful");
+        } catch (error) {
+          console.error("Error uploading media:", error);
+          toast.error("Error uploading media");
+          return; // Exit if any file upload fails
+        }
+      }
+    };
+
+    // Upload gallery photos and videos sequentially
+    await uploadFiles(galleryPhotos);
+    await uploadFiles(galleryVideos);
     router.push(`/User/profiles`);
     router.refresh();
   };
@@ -96,7 +105,6 @@ const FileUpload = ({ userIds, prevStep }) => {
           accept="image/*"
           onChange={handleProfileChange}
           className="mb-4 border rounded p-2 w-full transition duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-blue-500"
-          required
         />
         {profilePicture && (
           <div className="flex items-center mb-4">
@@ -113,9 +121,6 @@ const FileUpload = ({ userIds, prevStep }) => {
             </button>
           </div>
         )}
-        {/* <button className="mb-6 px-4 py-2 bg-blue-500 text-white rounded shadow hover:bg-blue-600 transition duration-200">
-          Upload All
-        </button> */}
 
         <h2 className="text-2xl font-semibold mb-4">
           Upload Gallery Photos <span className="text-red-500">*</span>
@@ -126,7 +131,6 @@ const FileUpload = ({ userIds, prevStep }) => {
           multiple
           onChange={handleGalleryPhotosChange}
           className="mb-4 border rounded p-2 w-full transition duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-blue-500"
-          required
         />
         <div className="flex flex-wrap mb-4">
           {galleryPhotos.map((photo, index) => (
@@ -155,7 +159,6 @@ const FileUpload = ({ userIds, prevStep }) => {
           multiple
           onChange={handleGalleryVideosChange}
           className="mb-4 border rounded p-2 w-full transition duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-blue-500"
-          required
         />
         <div className="flex flex-wrap mb-4">
           {galleryVideos.map((video, index) => (
@@ -176,6 +179,13 @@ const FileUpload = ({ userIds, prevStep }) => {
           ))}
         </div>
 
+        {/* <button
+          onClick={handleUpload}
+          className="mb-6 px-4 py-2 bg-green-500 text-white rounded shadow hover:bg-green-600 transition duration-200"
+        >
+          Upload All Media
+        </button> */}
+
         {/* Navigation Buttons */}
         <div className="flex justify-between mt-6">
           <button
@@ -185,7 +195,7 @@ const FileUpload = ({ userIds, prevStep }) => {
             Previous
           </button>
           <button
-            onClick={handleSequentialUploads}
+            onClick={handleUpload}
             className="bg-blue-500 text-white rounded px-4 py-2 hover:bg-blue-600 transition duration-200"
           >
             Submit

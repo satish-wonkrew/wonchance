@@ -52,7 +52,7 @@ const DOBPicker = ({ value, onDateChange }) => {
     <div className="relative flex flex-col items-start space-y-3 font-serif">
       <div className="relative w-full">
         <div
-          className="flex items-center border border-gray-300 rounded-full px-4 py-2 cursor-pointer hover:border-blue-600 transition duration-200 ease-in-out focus-within:ring-2 focus-within:ring-blue-500 shadow-md"
+          className="flex items-center border border-gray-300 rounded-md px-4 py-2 cursor-pointer hover:border-blue-600 transition duration-200 ease-in-out focus-within:ring-2 focus-within:ring-blue-500 shadow-md"
           onClick={toggleCalendar}
         >
           <input
@@ -72,7 +72,7 @@ const DOBPicker = ({ value, onDateChange }) => {
           >
             <div className="flex flex-col space-y-4">
               {/* Year Dropdown */}
-              <div className="flex items-center justify-between">
+              {/* <div className="flex items-center justify-between">
                 <label htmlFor="year" className="text-gray-700">Year:</label>
                 <select
                   id="year"
@@ -88,10 +88,10 @@ const DOBPicker = ({ value, onDateChange }) => {
                     <option key={year} value={year}>{year}</option>
                   ))}
                 </select>
-              </div>
+              </div> */}
 
               {/* Month Dropdown */}
-              <div className="flex items-center justify-between">
+              {/* <div className="flex items-center justify-between">
                 <label htmlFor="month" className="text-gray-700">Month:</label>
                 <select
                   id="month"
@@ -107,7 +107,7 @@ const DOBPicker = ({ value, onDateChange }) => {
                     <option key={i + 1} value={i + 1}>{new Date(0, i).toLocaleString('default', { month: 'long' })}</option>
                   ))}
                 </select>
-              </div>
+              </div> */}
 
               {/* Calendar for Day Selection */}
               <div className="transition-opacity duration-300 ease-in-out">

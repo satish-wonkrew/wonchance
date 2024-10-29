@@ -53,7 +53,7 @@ npm install
 Create a `.env.local` file in the root directory:
 
 ```bash
-NEXT_PUBLIC_API_URL=https://api.wonchance.com/api
+NEXT_PUBLIC_API_URL=http://localhost:5000/api
 ```
 
 ### 4. Start Development Server
