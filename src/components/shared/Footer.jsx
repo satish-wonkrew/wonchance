@@ -1,21 +1,39 @@
-import Image from 'next/image';
-import { FaFacebookF, FaTwitter, FaWhatsapp, FaInstagram, FaYoutube } from 'react-icons/fa';
+"use client";
+import Image from "next/image";
+import { usePathname } from "next/navigation";
+import {
+  FaFacebookF,
+  FaTwitter,
+  FaWhatsapp,
+  FaInstagram,
+  FaYoutube,
+} from "react-icons/fa";
 
 export default function Footer() {
+  const router = usePathname();
+  const noFooterRoutes = ["/auth", "/signup", "/dashboard"]; // Include dashboard and other routes
+
+  // Hide footer on authentication and dashboard pages
+  if (noFooterRoutes.includes(router.pathname)) return null;
+
   return (
     <footer className="bg-black text-white">
-      <div className="container  py-10 md:py-10 mx-auto px-4 md:px-8 lg:px-16 flex flex-col md:flex-row justify-between items-center md:items-start space-y-10 md:space-y-0">
-        
+      <div className="container py-10 mx-auto px-4 md:px-8 lg:px-16 flex flex-col md:flex-row justify-between items-center md:items-start space-y-10 md:space-y-0">
         {/* Left Section: Logo and Socials */}
         <div className="flex flex-col items-center md:items-start text-center md:text-left space-y-4">
           <div className="mb-4">
-            {/* Wonchance Logo */}
-            <Image src="/Img/home/Logo.png" alt="Wonchance Logo" width={150} height={40} />
+            <Image
+              src="/Img/home/Logo.png"
+              alt="Wonchance Logo"
+              width={150}
+              height={40}
+            />
           </div>
-          <h2 className="text-xl font-semibold">From Wonchance to Ad Spotlight!</h2>
+          <h2 className="text-xl font-semibold">
+            From Wonchance to Ad Spotlight!
+          </h2>
           <p className="text-gray-400">Follow Us</p>
-          
-          {/* Social Media Icons */}
+
           <div className="flex space-x-4">
             <a href="#" className="hover:text-gray-400 transition">
               <FaFacebookF className="text-2xl" />
@@ -40,19 +58,29 @@ export default function Footer() {
           <h3 className="text-xl font-semibold mb-4">Links</h3>
           <ul className="space-y-2 text-gray-400">
             <li>
-              <a href="/" className="hover:text-white transition">Home</a>
+              <a href="/" className="hover:text-white transition">
+                Home
+              </a>
             </li>
             <li>
-              <a href="/talents" className="hover:text-white transition">Talents</a>
+              <a href="/talents" className="hover:text-white transition">
+                Talents
+              </a>
             </li>
             <li>
-              <a href="/casting-call" className="hover:text-white transition">Casting Call</a>
+              <a href="/casting-call" className="hover:text-white transition">
+                Casting Call
+              </a>
             </li>
             <li>
-              <a href="/about" className="hover:text-white transition">About Us</a>
+              <a href="/about" className="hover:text-white transition">
+                About Us
+              </a>
             </li>
             <li>
-              <a href="/contact" className="hover:text-white transition">Contact Us</a>
+              <a href="/contact" className="hover:text-white transition">
+                Contact Us
+              </a>
             </li>
           </ul>
         </div>
@@ -61,22 +89,30 @@ export default function Footer() {
         <div className="text-center md:text-right">
           <h3 className="text-xl font-semibold mb-4">An initiative by</h3>
           <div className="mb-4">
-            {/* Initiative logos */}
-            <Image src="/Img/footer/Wonkrew.png" alt="Wonkrew Logo" width={150} height={30} />
+            <Image
+              src="/Img/footer/Wonkrew.png"
+              alt="Wonkrew Logo"
+              width={150}
+              height={30}
+            />
           </div>
           <div>
-            <Image src="/Img/footer/scream.png" alt="Scream Creations Logo" width={150} height={30} />
+            <Image
+              src="/Img/footer/scream.png"
+              alt="Scream Creations Logo"
+              width={150}
+              height={30}
+            />
           </div>
         </div>
       </div>
 
-      {/* Bottom Footer: Copyright */}
-      <div className="mt-12 border-t  py-2 md:py-2 border-gray-800 pt-6 flex flex-col lg:flex-row justify-between items-center px-4 md:px-8 lg:px-16">
+      <div className="mt-12 border-t py-2 border-gray-800 pt-6 flex flex-col lg:flex-row justify-between items-center px-4 md:px-8 lg:px-16">
         <p className="text-gray-500 text-sm">
           ©2023 Satz Venture Nurturers Pvt Ltd. All Rights Reserved.
         </p>
         <p className="text-sm text-gray-500 mt-4 lg:mt-0">
-          Made with <span className="text-red-500">❤</span> by{' '}
+          Made with <span className="text-red-500">❤</span> by{" "}
           <a href="#" className="text-white hover:underline transition">
             WONKREW
           </a>

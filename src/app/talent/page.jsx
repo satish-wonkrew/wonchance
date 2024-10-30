@@ -99,7 +99,7 @@ const TalentPage = () => {
   if (!showContent) {
     return (
       <div className="flex  justify-center items-center h-screen bg-primary-forground dark:bg-dark-primary-forground">
-        <LoadingSpinner />
+        <img src="/WONCHANCE.gif" alt="Loading" />
       </div>
     );
   }
@@ -115,7 +115,7 @@ const TalentPage = () => {
   if (loading) {
     return (
       <div className="flex justify-center items-center h-screen bg-primary-forground dark:bg-dark-primary-forground">
-        <Spinner />
+        <img src="/WONCHANCE.gif" alt="Loading"  />
       </div>
     );
   }
@@ -304,7 +304,7 @@ const TalentPage = () => {
                       : "N/A"}
                   </p> */}
                   <p className="text-sm text-gray-600 dark:text-gray-300">
-                    <strong>Age:</strong> {talent?.age || "N/A"}
+                    <strong>Age:</strong> {talent?.profile?.age || "N/A"}
                   </p>
                   <p className="text-sm text-gray-600 dark:text-gray-300">
                     <strong>Location:</strong>{" "}
@@ -319,7 +319,7 @@ const TalentPage = () => {
               {viewMode === "grid" && (
                 <>
                   <p className="text-sm text-gray-600 dark:text-gray-300 mb-2">
-                    <strong>Age:</strong> {talent?.age || "N/A"}
+                    <strong>Age:</strong> {talent?.profile?.age || "N/A"}
                   </p>
                   {/* <p className="text-sm text-gray-600 dark:text-gray-300 mb-2">
                     <strong>Height:</strong>{" "}

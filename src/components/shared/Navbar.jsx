@@ -128,14 +128,14 @@ const Navbar = ({ showMenuItems = true }) => {
   return (
     <header className="bg-black items-center shadow-lg fixed top-0 left-0 w-full z-50">
       <div className="mx-auto max-w-screen-xl px-4 sm:px-6 lg:px-8">
-        <div className="flex flex-wrap items-center h-[100px] justify-between">
+        <div className="flex flex-wrap items-center justify-between h-20">
           <Link href="/" className="text-teal-600 dark:text-teal-600">
             <Image src="/logo.png" alt="Logo" width={200} height={200} />
           </Link>
 
           {showMenuItems && (
             <nav className="hidden md:block">
-              <ul className="flex items-center gap-6 text-sm">
+              <ul className="flex items-center space-x-6 text-sm">
                 {menuItems.map((item) => (
                   <li key={item} className="relative group">
                     <AnimatedLink
@@ -149,23 +149,26 @@ const Navbar = ({ showMenuItems = true }) => {
             </nav>
           )}
 
-          <div className="flex items-center gap-4">
+          <div className="flex items-center space-x-4">
             {status === "loading" ? (
-              <span>Loading...</span>
+              <span className="text-white">Loading...</span>
             ) : user ? (
               <DropdownMenu>
                 <DropdownMenuTrigger asChild>
-                  <Avatar className="cursor-pointer w-8 h-8 md:w-10 md:h-10">
-                    <AvatarImage
-                      src={
-                        user?.profilePictureUrl
-                          ? user.profilePictureUrl
-                          : "/Img/Usericon.png"
-                      }
-                      alt={user?.fullName || "User"}
-                    />
-                  </Avatar>
+                  <div className="relative group">
+                    <Avatar className="cursor-pointer w-10 h-10 md:w-12 md:h-12 transition-transform duration-300 ease-in-out transform hover:scale-110 hover:shadow-xl hover:animate-pulse border-2 border-transparent hover:border-teal-600 hover:shadow-[0_0_10px_rgba(0,255,255,0.7)]">
+                      <AvatarImage
+                        src={user?.profilePictureUrl || "/Img/Usericon.png"}
+                        alt={user?.fullName || "User's profile picture"}
+                        className="rounded-full"
+                      />
+                    </Avatar>
+                    <div className="absolute left-1/2 transform -translate-x-1/2 mt-2 w-max rounded-lg bg-gray-800 text-white text-sm font-semibold px-3 py-1 shadow-lg opacity-0 translate-y-2 group-hover:opacity-100 group-hover:translate-y-0 transition-opacity transition-transform duration-300">
+                      {user?.profile.firstName || "User"}
+                    </div>
+                  </div>
                 </DropdownMenuTrigger>
+
                 <DropdownMenuContent className="w-56">
                   <DropdownMenuLabel>My Account</DropdownMenuLabel>
                   <DropdownMenuSeparator />

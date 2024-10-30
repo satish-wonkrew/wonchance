@@ -251,7 +251,7 @@ const MidlleInfo = ({ nextStep, prevStep, onFormDataChange, formData }) => {
     formData.profile?.physicalDetails || {}
   );
   const [workDetails, setWorkDetails] = useState(
-    formData.profile?.workDetails?.projects || []
+    formData.profile?.workDetails || []
   );
   const [skillDetails, setSkillDetails] = useState({
     driving: formData.profile?.skillDetails?.driving || [],
