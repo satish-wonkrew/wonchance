@@ -126,22 +126,22 @@ const Navbar = ({ showMenuItems = true }) => {
   const menuItems = getMenuItems();
 
   return (
-    <header className="bg-black items-center shadow-lg fixed  top-0 left-0 w-full z-50">
+    <header className="bg-black items-center shadow-lg fixed top-0 left-0 w-full z-50">
       <div className="mx-auto max-w-screen-xl px-4 sm:px-6 lg:px-8">
-        <div className="flex flex-row items-center h-[100px] justify-between">
-          <Link href="/" className="block text-teal-600 dark:text-teal-600">
+        <div className="flex flex-wrap items-center h-[100px] justify-between">
+          <Link href="/" className="text-teal-600 dark:text-teal-600">
             <Image
-              src="/Img/home/Logo.png"
+              src="/Logo.png"
               alt="Logo"
-              width={150}
-              height={150}
+              width={180}
+              height={180}
               className="mx-10"
             />
           </Link>
 
           {showMenuItems && (
             <nav className="hidden md:block">
-              <ul className="relative flex items-center gap-6 text-sm">
+              <ul className="flex items-center gap-6 text-sm">
                 {menuItems.map((item) => (
                   <li key={item} className="relative group">
                     <AnimatedLink
@@ -161,14 +161,14 @@ const Navbar = ({ showMenuItems = true }) => {
             ) : user ? (
               <DropdownMenu>
                 <DropdownMenuTrigger asChild>
-                  <Avatar className="cursor-pointer">
+                  <Avatar className="cursor-pointer w-8 h-8 md:w-10 md:h-10">
                     <AvatarImage
                       src={
                         user?.profilePictureUrl
                           ? user.profilePictureUrl
                           : "/Img/Usericon.png"
-                      } // Use a ternary operator for fallback
-                      alt={user?.fullName || "User"} // Fallback for alt text
+                      }
+                      alt={user?.fullName || "User"}
                     />
                   </Avatar>
                 </DropdownMenuTrigger>
@@ -204,13 +204,6 @@ const Navbar = ({ showMenuItems = true }) => {
                             <DropdownMenuShortcut>⌘A</DropdownMenuShortcut>
                           </DropdownMenuItem>
                         </Link>
-                        {/* <Link href="/User/profiles/update">
-                          <DropdownMenuItem>
-                            <Settings className="mr-2 h-4 w-4" />
-                            <span>Profile Update</span>
-                            <DropdownMenuShortcut>⌘U</DropdownMenuShortcut>
-                          </DropdownMenuItem>
-                        </Link> */}
                       </>
                     )}
                     {user?.role === "crew" && (
@@ -222,18 +215,10 @@ const Navbar = ({ showMenuItems = true }) => {
                             <DropdownMenuShortcut>⌘B</DropdownMenuShortcut>
                           </DropdownMenuItem>
                         </Link>
-
                         <Link href="/dashboard">
                           <DropdownMenuItem>
                             <Settings className="mr-2 h-4 w-4" />
                             <span>Dashboard</span>
-                            <DropdownMenuShortcut>⌘U</DropdownMenuShortcut>
-                          </DropdownMenuItem>
-                        </Link>
-                        <Link href="/waitting">
-                          <DropdownMenuItem>
-                            <Settings className="mr-2 h-4 w-4" />
-                            <span>Waitting Page</span>
                             <DropdownMenuShortcut>⌘U</DropdownMenuShortcut>
                           </DropdownMenuItem>
                         </Link>
@@ -257,7 +242,7 @@ const Navbar = ({ showMenuItems = true }) => {
                 </DropdownMenuContent>
               </DropdownMenu>
             ) : (
-              <Button asChild className="w-28 h-11">
+              <Button asChild className="w-24 h-10 md:w-28 md:h-11">
                 <Link href="/auth">Login</Link>
               </Button>
             )}
