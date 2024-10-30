@@ -21,21 +21,27 @@ const Gallery = ({ profile }) => {
 
   // Safeguard against null values
   const photosWithBaseUrl = Array.isArray(profile.galleryDetails?.photos)
-    ? profile.galleryDetails.photos.map((photo) => photo?.replace(/\\/g, "/"))
+    ? profile.galleryDetails.photos
+        .filter((photo) => photo && photo.trim() !== "") // Filter out empty strings
+        .map((photo) => photo?.replace(/\\/g, "/"))
     : [];
 
   const items = [
     ...(photosWithBaseUrl.map((src) => ({ src, type: "image" })) || []),
     ...(Array.isArray(profile.galleryDetails?.videos)
-      ? profile.galleryDetails.videos.map((src) => {
-          const thumbnail = `${src.replace("videos", "Img/Logo")}.png`;
-          return {
-            src,
-            type: "video",
-            thumbnail: thumbnail.startsWith("/") ? thumbnail : `/${thumbnail}`, // Ensure leading slash
-            defaultThumbnail: "/Img/Logo.png", // Path to default thumbnail
-          };
-        })
+      ? profile.galleryDetails.videos
+          .filter((src) => src && src.trim() !== "")
+          .map((src) => {
+            const thumbnail = `${src.replace("videos", "Img/Logo")}.png`;
+            return {
+              src,
+              type: "video",
+              thumbnail: thumbnail.startsWith("/")
+                ? thumbnail
+                : `/${thumbnail}`, // Ensure leading slash
+              defaultThumbnail: "/Img/Logo.png", // Path to default thumbnail
+            };
+          })
       : []),
   ];
 

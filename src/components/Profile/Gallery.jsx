@@ -26,17 +26,29 @@ const Gallery = () => {
   };
 
   const photosWithBaseUrl =
-    user?.galleryDetails?.photos?.map((photo) => {
-      return `${photo.replace(/\\/g, "/")}`; // Convert to valid URL format
-    }) || [];
+    user?.galleryDetails?.photos
+      ?.filter((photo) => photo && isValidUrl(photo)) // Filter out empty or invalid URLs
+      ?.map((photo) => {
+        return `${photo.replace(/\\/g, "/")}`; // Convert to valid URL format
+      }) || [];
 
   // Combine photos and videos into a single array with type information
   const items = [
     ...(user?.galleryDetails?.photos?.map((src) => ({ src, type: "image" })) ||
       []),
-    ...(user?.galleryDetails?.videos?.map((src) => ({ src, type: "video" })) ||
-      []),
+    ...(user?.galleryDetails?.videos
+      ?.filter((video) => video && isValidUrl(video)) // Filter out empty or invalid URLs
+      ?.map((src) => ({ src, type: "video" })) || []),
   ];
+
+  const isValidUrl = (url) => {
+    try {
+      new URL(url);
+      return true;
+    } catch (e) {
+      return false;
+    }
+  };
 
   return (
     <div className="py-10 px-5 md:px-20">

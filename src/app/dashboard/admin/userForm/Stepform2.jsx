@@ -4,23 +4,22 @@ import BasicInfo from "./BasicInfo";
 import Advanced from "./Advanced";
 import MidlleInfo from "./Middle";
 import { USER_API_END_POINT } from "@/utils/constant";
-import { useUser } from "@/hooks/useUser";
 import FileUpload from "./Advanced";
+import { useParams } from "next/navigation";
 
 const TOTAL_STEPS = 3;
 
 const StepForm2 = () => {
-  const userIds = useUser();
   const [step, setStep] = useState(1);
+  // Fetch User Id From Params
+  const userId = useParams();
   const [formData, setFormData] = useState({});
   const [profilePicture, setProfilePicture] = useState(null);
   const [galleryPhotos, setGalleryPhotos] = useState([]);
   const [galleryVideos, setGalleryVideos] = useState([]);
-  const userIdss = userIds.user?._id;
 
   // Check if localStorage is available
   const isBrowser = typeof window !== "undefined";
-
   useEffect(() => {
     if (isBrowser) {
       const savedStep = localStorage.getItem("formStep");
@@ -46,7 +45,7 @@ const StepForm2 = () => {
       localStorage.setItem("formData", JSON.stringify(formData));
     }
 
-    // Call saveDataToServer function to save data in the server.
+    // Call saveDataToServer function to save data on the server.
     saveDataToServer(formData);
 
     // Auto-save data to the server every 30 seconds
@@ -85,6 +84,12 @@ const StepForm2 = () => {
   const handleGalleryVideosChange = (files) => {
     setGalleryVideos(files);
   };
+  const userIdStr =
+    typeof userId === "object" && userId.wctid ? userId.wctid : userId;
+  console.log("====================================");
+  console.log(userIdStr);
+  console.log("====================================");
+  const wctId = userIdStr;
 
   // Save form data to the server
   const saveDataToServer = async (data) => {
@@ -92,15 +97,11 @@ const StepForm2 = () => {
 
     try {
       const token = localStorage.getItem("token");
-      const userDatas = localStorage.getItem("user");
-      if (!token || !userDatas) {
-        throw new Error("Authentication or user data missing.");
+      if (!token) {
+        throw new Error("Authentication token is missing.");
       }
 
-      const users = JSON.parse(userDatas);
-      const userId = users.id;
-
-      const res = await fetch(`${USER_API_END_POINT}/update/${userId}`, {
+      const res = await fetch(`${USER_API_END_POINT}/user/${wctId}`, {
         method: "PATCH",
         headers: {
           "Content-Type": "application/json",
@@ -119,15 +120,6 @@ const StepForm2 = () => {
 
   const handleSubmit = async () => {
     if (!isBrowser) return;
-
-    const userDatas = localStorage.getItem("user");
-    if (!userDatas) {
-      console.error("User data not found.");
-      return;
-    }
-
-    const users = JSON.parse(userDatas);
-    const userId = users.id;
 
     // Save form data to the server
     await saveDataToServer(formData);
@@ -170,7 +162,7 @@ const StepForm2 = () => {
       return (
         <FileUpload
           nextStep={handleSubmit} // Call handleSubmit when moving to the next step
-          userIds={userIdss}
+          userId={userId}
           prevStep={prevStep}
           onFormDataChange={handleFormDataChange}
           formData={formData}

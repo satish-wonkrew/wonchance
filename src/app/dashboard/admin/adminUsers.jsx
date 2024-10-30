@@ -28,6 +28,10 @@ const AdminUsers = () => {
   const companies = useSelector((state) => state.company.companies);
   const { projects, projectStatus } = useSelector((state) => state.projects);
   const route = useRouter();
+
+  // Pagination State
+  const [currentPage, setCurrentPage] = useState(1);
+  const usersPerPage = 50;
   // Local state for filters, search, and assignment inputs
   const [searchTerm, setSearchTerm] = useState("");
   const [filterStatus, setFilterStatus] = useState("all");
@@ -47,6 +51,44 @@ const AdminUsers = () => {
   useEffect(() => {
     dispatch(fetchAllCompanies());
   }, [dispatch]);
+
+  const getNextApprovalStatus = (currentStatus) => {
+    switch (currentStatus) {
+      case "active":
+        return "inactive"; // Revoking approval
+      case "inactive":
+        return "pending"; // Setting to pending
+      case "pending":
+        return "active"; // Approving the user
+      default:
+        return "pending"; // Default to pending if status is unknown
+    }
+  };
+
+  const getButtonLabel = (currentStatus) => {
+    switch (currentStatus) {
+      case "active":
+        return "Revoke Approval";
+      case "inactive":
+        return "Set to Pending";
+      case "pending":
+        return "Approve User";
+      default:
+        return "Approve User";
+    }
+  };
+  const getApprovalLabel = (status) => {
+    switch (status) {
+      case "active":
+        return "Approved"; // User is approved
+      case "inactive":
+        return "Not Approved"; // User is not approved
+      case "pending":
+        return "Pending Approval"; // User is pending approval
+      default:
+        return "Unknown Status"; // In case of unexpected status
+    }
+  };
 
   // Fetch projects by selected company
   useEffect(() => {
@@ -75,9 +117,21 @@ const AdminUsers = () => {
   const handleSortFieldChange = (e) => setSortField(e.target.value);
   const handleSortOrderChange = (e) => setSortOrder(e.target.value);
 
-  // Handler to approve or revoke approval status
-  const handleApprove = (userId, isApproved) => {
-    dispatch(updateUserApprovalStatus({ userId, isApproved }));
+  // Pagination handlers
+  const lastUserIndex = currentPage * usersPerPage;
+  const firstUserIndex = lastUserIndex - usersPerPage;
+  const currentUsers = users.slice(firstUserIndex, lastUserIndex);
+  const totalPages = Math.ceil(users.length / usersPerPage);
+
+  const handlePageChange = (pageNumber) => {
+    if (pageNumber >= 1 && pageNumber <= totalPages) {
+      setCurrentPage(pageNumber);
+    }
+  };
+
+  const handleApprove = (userId, currentStatus) => {
+    const newStatus = getNextApprovalStatus(currentStatus);
+    dispatch(updateUserApprovalStatus({ userId, isApproved: newStatus }));
   };
   console.log("====================================");
   console.log(projects);
@@ -138,9 +192,10 @@ const AdminUsers = () => {
           whatsappNumber?.includes(searchTerm.toLowerCase()) ||
           wctId?.includes(searchTerm.toLowerCase())) &&
         (filterStatus === "all" ||
-          (filterStatus === "approved" && user.isApproved) ||
-          (filterStatus === "notApproved" && !user.isApproved)) &&
-        (filterRole === "all" || role === filterRole)
+          (filterStatus === "active" && user.isApproved === "active") ||
+          (filterStatus === "inactive" && user.isApproved === "inactive") ||
+          (filterStatus === "pending" && user.isApproved === "pending")) &&
+        (filterRole === "all" || user.role === filterRole)
       );
     })
     .sort((a, b) => {
@@ -172,10 +227,16 @@ const AdminUsers = () => {
           Total Users: {users.length}
         </p>
         <p className="text-gray-700 dark:text-gray-300">
-          Approved Users: {users.filter((user) => user.isApproved).length}
+          Approved Users:{" "}
+          {users.filter((user) => user.isApproved === "active").length}
         </p>
         <p className="text-gray-700 dark:text-gray-300">
-          Not Approved Users: {users.filter((user) => !user.isApproved).length}
+          Not Approved Users:{" "}
+          {users.filter((user) => user.isApproved === "inactive").length}
+        </p>
+        <p className="text-gray-700 dark:text-gray-300">
+          Pending Approval:{" "}
+          {users.filter((user) => user.isApproved === "pending").length}
         </p>
       </div>
 
@@ -194,9 +255,11 @@ const AdminUsers = () => {
           className="p-2 border border-gray-300 rounded-md"
         >
           <option value="all">All Statuses</option>
-          <option value="approved">Approved</option>
-          <option value="notApproved">Not Approved</option>
+          <option value="active">Approved</option>
+          <option value="inactive">Not Approved</option>
+          <option value="pending">Pending Approval</option>
         </select>
+
         <select
           value={filterRole}
           onChange={handleFilterRoleChange}
@@ -273,19 +336,21 @@ const AdminUsers = () => {
           >
             <div
               className={`absolute top-0 right-0 mt-4 mr-4 px-3 py-1 text-sm font-medium rounded-full ${
-                user.isApproved
+                user.isApproved === "active"
                   ? "bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-300"
-                  : "bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-300"
+                  : user.isApproved === "inactive"
+                  ? "bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-300"
+                  : "bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-300" // For "pending"
               }`}
             >
-              {user.isApproved ? "Approved" : "Not Approved"}
+              {getApprovalLabel(user.isApproved)}
             </div>
+
             <div className="flex items-center gap-4 mb-4">
               <div className="w-16 h-16 bg-gray-300 dark:bg-gray-600 rounded-full flex items-center justify-center overflow-hidden">
                 <img
                   src={
-                    user.profilePictureUrl ||
-                    "https://placehold.co/150x150.png"
+                    user.profilePictureUrl || "https://placehold.co/150x150.png"
                   }
                   alt="Profile Picture"
                   className="w-full h-full object-cover"
@@ -295,9 +360,7 @@ const AdminUsers = () => {
                 <h2 className="text-xl font-semibold text-gray-900 dark:text-white">
                   {user.profile.firstName} {user.profile.lastName}
                 </h2>
-                <p className="text-gray-600 dark:text-gray-400">
-                  {user.email}
-                </p>
+                <p className="text-gray-600 dark:text-gray-400">{user.email}</p>
               </div>
             </div>
             <div className="mt-4">
@@ -322,9 +385,9 @@ const AdminUsers = () => {
               <Button
                 className="mr-2"
                 variant="secondary"
-                onClick={() => handleApprove(user._id, !user.isApproved)}
+                onClick={() => handleApprove(user._id, user.isApproved)}
               >
-                {user.isApproved ? "Revoke Approval" : "Approve User"}
+                {getButtonLabel(user.isApproved)}
               </Button>
               {/* <Button
                 variant="destructive"
@@ -334,13 +397,20 @@ const AdminUsers = () => {
               </Button> */}
               <Button
                 className="mx-2"
-                onClick={() =>
-                  route.push(`/talent/${user.wctId}`, {
-                    userId: user.id,
-                  })
-                }
+                onClick={() => window.open(`/talent/${user.wctId}`, "_blank")}
               >
                 View
+              </Button>
+              <Button
+                className="mx-2"
+                onClick={() =>
+                  window.open(
+                    `/dashboard/admin/userForm/${user.wctId}`,
+                    "_blank"
+                  )
+                }
+              >
+                Update
               </Button>
               <Button
                 className="mt-2"
@@ -367,6 +437,24 @@ const AdminUsers = () => {
             </div>
           </div>
         ))}
+      </div>
+      {/* Pagination */}
+      <div className="mt-6 flex justify-center gap-4">
+        <Button
+          onClick={() => handlePageChange(currentPage - 1)}
+          disabled={currentPage === 1}
+        >
+          Previous
+        </Button>
+        <span>
+          Page {currentPage} of {totalPages}
+        </span>
+        <Button
+          onClick={() => handlePageChange(currentPage + 1)}
+          disabled={currentPage === totalPages}
+        >
+          Next
+        </Button>
       </div>
     </div>
   );

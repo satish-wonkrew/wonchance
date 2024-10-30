@@ -1,10 +1,9 @@
-import React from "react";
-import StepForm from "./Stepform";
+import StepForm2 from "../Stepform2";
 
 const page = () => {
   return (
     <div>
-      <StepForm />
+      <StepForm2 />
     </div>
   );
 };
