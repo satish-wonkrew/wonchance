@@ -130,13 +130,7 @@ const Navbar = ({ showMenuItems = true }) => {
       <div className="mx-auto max-w-screen-xl px-4 sm:px-6 lg:px-8">
         <div className="flex flex-wrap items-center h-[100px] justify-between">
           <Link href="/" className="text-teal-600 dark:text-teal-600">
-            <Image
-              src="/Logo.png"
-              alt="Logo"
-              width={180}
-              height={180}
-              className="mx-10"
-            />
+            <Image src="/logo.png" alt="Logo" width={200} height={200} />
           </Link>
 
           {showMenuItems && (

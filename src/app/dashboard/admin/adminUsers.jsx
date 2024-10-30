@@ -266,7 +266,7 @@ const AdminUsers = () => {
           className="p-2 border border-gray-300 rounded-md"
         >
           <option value="all">All Roles</option>
-          <option value="admin">Admin</option>
+          <option value="Super Admin">Super Admin</option>
           <option value="crew">Crew</option>
           <option value="talent">Talent</option>
         </select>

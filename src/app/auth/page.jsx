@@ -415,9 +415,51 @@ const Login = () => {
 
             {step === "profileUpdate" && (
               <>
-                <div className="flex flex-row justify-between gap-2">
+                <div className="flex flex-col gap-4">
+                  {/* Profile Type Adult Or Kid Radio Button */}
+                  <Label className="mt-3">
+                    Signing up for <span className="text-red-600">*</span>
+                  </Label>
+                  <div className="flex gap-4">
+                    <div className="flex items-center">
+                      <input
+                        type="radio"
+                        value="adult"
+                        checked={profileInput.ageGroup === "adult"}
+                        onChange={(e) =>
+                          setProfileInput({
+                            ...profileInput,
+                            ageGroup: e.target.value,
+                          })
+                        }
+                        required
+                        className="mr-2"
+                      />
+                      <span>Myself</span>
+                    </div>
+                    <div className="flex items-center">
+                      <input
+                        type="radio"
+                        value="kid"
+                        checked={profileInput.ageGroup === "kid"}
+                        onChange={(e) =>
+                          setProfileInput({
+                            ...profileInput,
+                            ageGroup: e.target.value,
+                          })
+                        }
+                        required
+                        className="mr-2"
+                      />
+                      <span>My Child</span>
+                    </div>
+                  </div>
+
+                  {/* First Name */}
                   <div className="block w-full my-2">
-                    <Label>First Name</Label>
+                    <Label>
+                      First Name <span className="text-red-600">*</span>
+                    </Label>
                     <Input
                       type="text"
                       value={profileInput.firstName}
@@ -428,11 +470,16 @@ const Login = () => {
                         })
                       }
                       required
-                      placeholder="Enter your User name"
+                      placeholder="Enter your first name"
+                      className="mt-1"
                     />
                   </div>
+
+                  {/* Last Name */}
                   <div className="block w-full my-2">
-                    <Label>Last Name</Label>
+                    <Label>
+                      Last Name <span className="text-red-600">*</span>
+                    </Label>
                     <Input
                       type="text"
                       value={profileInput.lastName}
@@ -444,160 +491,124 @@ const Login = () => {
                       }
                       required
                       placeholder="Enter your last name"
+                      className="mt-1"
                     />
                   </div>
-                </div>
-                <Label>Email</Label>
-                <Input
-                  type="email"
-                  value={profileInput.email}
-                  onChange={(e) =>
-                    setProfileInput({ ...profileInput, email: e.target.value })
-                  }
-                  required
-                  placeholder="Enter your email"
-                  className="rounded-full "
-                />
-                {/* <div className="my-2">
-                  <Label className="block my-2">Date of Birth</Label>
-                  <DOBPicker
-                    // value={formData.profile?.dateOfBirth} // Ensure this is a string or null
-                    onDateChange={(date) => {
-                      if (date) {
+
+                  {/* Email */}
+                  <div className="block w-full my-2">
+                    <Label>
+                      Email <span className="text-red-600">*</span>
+                    </Label>
+                    <Input
+                      type="email"
+                      value={profileInput.email}
+                      onChange={(e) =>
                         setProfileInput({
                           ...profileInput,
-                          dateOfBirth: date.toISOString().split("T")[0],
-                        });
+                          email: e.target.value,
+                        })
                       }
-                    }}
-                  />
-                </div> */}
-                <Label>Gender</Label>
-                {/* Radio Button */}
-                <div className="flex gap-2">
-                  <input
-                    type="radio"
-                    value="male"
-                    checked={profileInput.gender === "male"}
-                    onChange={(e) =>
-                      setProfileInput({
-                        ...profileInput,
-                        gender: e.target.value,
-                      })
-                    }
-                    required
-                  />
-                  <span>Male</span>
-                  <input
-                    type="radio"
-                    value="female"
-                    checked={profileInput.gender === "female"}
-                    onChange={(e) =>
-                      setProfileInput({
-                        ...profileInput,
-                        gender: e.target.value,
-                      })
-                    }
-                    required
-                  />
-                  <span>Female</span>
-                  <input
-                    type="radio"
-                    value="other"
-                    checked={profileInput.gender === "other"}
-                    onChange={(e) =>
-                      setProfileInput({
-                        ...profileInput,
-                        gender: e.target.value,
-                      })
-                    }
-                    required
-                  />
-                  <span>Other</span>
-                </div>
-
-                {/* Profile Type Adult Or Kid Radio Buutn */}
-                <Label className="mt-3">My Self or Child</Label>
-                <span className="text-red-600">*</span>
-                <div className="flex gap-2">
-                  <input
-                    type="radio"
-                    value="adult"
-                    checked={profileInput.ageGroup === "adult"}
-                    onChange={(e) =>
-                      setProfileInput({
-                        ...profileInput,
-                        ageGroup: e.target.value,
-                      })
-                    }
-                    required
-                  />
-                  <span>Adult</span>
-                  <input
-                    type="radio"
-                    value="kid"
-                    checked={profileInput.ageGroup === "kid"}
-                    onChange={(e) =>
-                      setProfileInput({
-                        ...profileInput,
-                        ageGroup: e.target.value,
-                      })
-                    }
-                    required
-                  />
-                  <span>Kid</span>
-                </div>
-
-                {/* <Input
-                  type="date"
-                  value={
-                    profileInput.dateOfBirth
-                      ? new Date(profileInput.dateOfBirth)
-                          .toISOString()
-                          .split("T")[0]
-                      : ""
-                  }
-                  onChange={(e) =>
-                    setProfileInput({
-                      ...profileInput,
-                      dateOfBirth: e.target.value, // Date in 'YYYY-MM-DD' format
-                    })
-                  }
-                  required
-                /> */}
-
-                {/* <Label>Role</Label> */}
-                <div className="flex gap-4 mb-4 hidden">
-                  <label>
-                    <input
-                      type="radio"
-                      value="talent"
-                      checked={selectedRole === "talent"}
-                      onChange={() => setSelectedRole("talent")}
                       required
-                      className="hidden"
+                      placeholder="Enter your email"
+                      className="rounded-full mt-1"
                     />
-                    Talent
-                  </label>
-                  <label>
-                    <input
-                      type="radio"
-                      value="talent"
-                      onChange={() => setSelectedRole("crew")}
-                      required
-                      className="hidden"
-                    />
-                    Crew
-                  </label>
+                  </div>
+
+                  {/* Gender */}
+                  <div className="block my-2">
+                    <Label>
+                      Gender <span className="text-red-600">*</span>
+                    </Label>
+                    <div className="flex gap-4">
+                      <div className="flex items-center">
+                        <input
+                          type="radio"
+                          value="male"
+                          checked={profileInput.gender === "male"}
+                          onChange={(e) =>
+                            setProfileInput({
+                              ...profileInput,
+                              gender: e.target.value,
+                            })
+                          }
+                          required
+                          className="mr-2"
+                        />
+                        <span>Male</span>
+                      </div>
+                      <div className="flex items-center">
+                        <input
+                          type="radio"
+                          value="female"
+                          checked={profileInput.gender === "female"}
+                          onChange={(e) =>
+                            setProfileInput({
+                              ...profileInput,
+                              gender: e.target.value,
+                            })
+                          }
+                          required
+                          className="mr-2"
+                        />
+                        <span>Female</span>
+                      </div>
+                      <div className="flex items-center">
+                        <input
+                          type="radio"
+                          value="other"
+                          checked={profileInput.gender === "other"}
+                          onChange={(e) =>
+                            setProfileInput({
+                              ...profileInput,
+                              gender: e.target.value,
+                            })
+                          }
+                          required
+                          className="mr-2"
+                        />
+                        <span>Other</span>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Role Selection (Hidden) */}
+                  <div className=" gap-4 mb-4 hidden">
+                    <label className="flex items-center">
+                      <input
+                        type="radio"
+                        value="talent"
+                        checked={selectedRole === "talent"}
+                        onChange={() => setSelectedRole("talent")}
+                        required
+                        className="hidden"
+                      />
+                      Talent
+                    </label>
+                    <label className="flex items-center">
+                      <input
+                        type="radio"
+                        value="crew"
+                        onChange={() => setSelectedRole("crew")}
+                        required
+                        className="hidden"
+                      />
+                      Crew
+                    </label>
+                  </div>
+
+                  {/* Error Message */}
+                  {error && <p className="text-red-500 text-sm">{error}</p>}
+
+                  {/* Submit Button */}
+                  <Button
+                    type="submit"
+                    disabled={loading}
+                    className="w-full mt-6"
+                  >
+                    {loading ? <Spinner /> : "Update Profile"}
+                  </Button>
                 </div>
-                <p className="text-red-500 text-sm">{error}</p>
-                <Button
-                  type="submit"
-                  disabled={loading}
-                  className="w-full mt-6"
-                >
-                  {loading ? <Spinner /> : "Update Profile"}
-                </Button>
               </>
             )}
           </form>
