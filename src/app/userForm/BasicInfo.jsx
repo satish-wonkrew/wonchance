@@ -117,7 +117,6 @@ const BasicInfo = ({ nextStep, prevStep, onFormDataChange, formData }) => {
             <DateOfBirthPicker
               value={formData.profile?.dateOfBirth}
               onDateChange={handleDateChange}
-             
             />
           </div>
 
@@ -210,6 +209,7 @@ const BasicInfo = ({ nextStep, prevStep, onFormDataChange, formData }) => {
               className="mt-1"
             />
           </div>
+          
 
           <div>
             <Label htmlFor="profile.nativePlace">

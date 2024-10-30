@@ -37,20 +37,23 @@ const workdetails = ({ profile }) => {
     <div>
       <div className="h-auto py-6">
         <div className="max-w-6xl mx-auto px-4">
-          {/* Work Details Header */}
-          <div className="grid grid-cols-3 gap-6 mb-6">
-            <h1 className="col-span-2 bg-gray-300 text-xl font-bold py-3 px-4 rounded-lg shadow">
+          {/* Work Details and Media Preferences Headers */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
+            <h1 className="col-span-2 max-md:hidden md:col-span-2 bg-gray-300 text-xl font-bold py-3 px-4 rounded-lg shadow">
               Work Details
             </h1>
-            <h1 className="col-span-1 bg-gray-300 text-xl font-bold py-3 px-4 rounded-lg shadow">
-              Media Preferences
+            <h1 className="col-span-1 bg-gray-300 text-xl md:hidden  font-bold py-3 px-4 rounded-lg shadow">
+            Work Details & Media Preferences
+            </h1>
+            <h1 className="col-span-1 max-md:hidden bg-gray-300 text-xl font-bold py-3 px-4 rounded-lg shadow">
+            Media Preferences
             </h1>
           </div>
 
-          <div className="grid grid-cols-3 gap-6">
-            {/* Left Side Accordions */}
+          <div className="flex flex-col md:grid md:grid-cols-3 gap-6">
+            {/* Left Side Accordions for Work Details */}
             <div className="space-y-4 col-span-2">
-              {/* Achievement Section */}
+              {/* Achievements Section */}
               <div className="bg-white shadow-lg rounded-lg p-4 transition duration-300 ease-in-out hover:shadow-xl">
                 <div
                   className="flex justify-between cursor-pointer items-center"
@@ -62,7 +65,6 @@ const workdetails = ({ profile }) => {
 
                 {openSections.achievement && (
                   <div className="mt-2">
-                    {/* Render workDetails */}
                     <div className="bg-white shadow-inner p-4 rounded-lg">
                       <h3 className="font-semibold text-lg">Work Details</h3>
                       <ul className="mt-2 space-y-2 text-sm">
@@ -70,7 +72,6 @@ const workdetails = ({ profile }) => {
                           <strong>Achievements:</strong>{" "}
                           {profiles?.profile.workDetails.achievements || "N/A"}
                         </li>
-
                         <li>
                           <strong>Experience:</strong>{" "}
                           {profiles?.profile.workDetails.experience || "N/A"}
@@ -89,8 +90,6 @@ const workdetails = ({ profile }) => {
                           {profiles?.profile.workDetails.shootPerDay || "N/A"}
                         </li>
                       </ul>
-
-                      {/* Render projects array */}
                     </div>
                   </div>
                 )}
@@ -117,7 +116,7 @@ const workdetails = ({ profile }) => {
               </div>
             </div>
 
-            {/* Right Side Accordions */}
+            {/* Right Side Accordions for Media Preferences */}
             <div className="space-y-4 col-span-1">
               {/* Interested Media Section */}
               <div className="bg-white shadow-lg rounded-lg p-4 transition duration-300 ease-in-out hover:shadow-xl">
@@ -147,7 +146,7 @@ const workdetails = ({ profile }) => {
                 )}
               </div>
 
-              {/* Comfortable Section 1 */}
+              {/* Comfortable With Section */}
               <div className="bg-white shadow-lg rounded-lg p-4 transition duration-300 ease-in-out hover:shadow-xl">
                 <div
                   className="flex justify-between cursor-pointer items-center"

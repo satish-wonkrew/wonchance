@@ -1,7 +1,7 @@
 import React from "react";
 
 const LoadingSpinner = () => (
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 150">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 150" className="h-96">
     <path
       fill="none"
       stroke="#1F2059"

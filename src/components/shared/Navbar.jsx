@@ -29,11 +29,11 @@ const Navbar = ({ showMenuItems = true }) => {
   const { user, status, error } = useUser();
   const router = useRouter();
 
-  useEffect(() => {
-    if (error) {
-      toast.error("Error fetching user profile");
-    }
-  }, [error]);
+  // useEffect(() => {
+  //   if (error) {
+
+  //   }
+  // }, [error]);
 
   const toggleMenu = () => setIsMenuOpen((prev) => !prev);
 

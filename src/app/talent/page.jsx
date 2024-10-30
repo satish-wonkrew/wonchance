@@ -42,6 +42,14 @@ const TalentPage = () => {
   const [sortBy, setSortBy] = useState("rating");
   const [showContent, setShowContent] = useState(false);
   const [showMore, setShowMore] = useState(false);
+  const [filters, setFilters] = useState({
+    location: talents.map((talent) => talent.location),
+    ageRange: talents.map((talent) => talent.ageRange),
+    experienceLevel: talents.map((talent) => talent.experienceLevel),
+    wctId: talents.map((talent) => talent.wctId),
+  });
+
+  const [advancedSearchVisible, setAdvancedSearchVisible] = useState(false);
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -54,7 +62,7 @@ const TalentPage = () => {
           dispatch(fetchApprovedUsers(null, {}, "", searchTerm)); // Fetch without token
         }
         // Delay the content rendering by 3 seconds
-        setTimeout(() => setShowContent(true), 2000);
+        setTimeout(() => setShowContent(true), 1000);
       } catch (error) {
         setAuthError(true);
       }
@@ -64,10 +72,16 @@ const TalentPage = () => {
   }, [dispatch, searchTerm]);
 
   const handleSearch = () => {
-    const token = localStorage.getItem("token");
-    dispatch(fetchApprovedUsers(token || "", {}, "", searchTerm));
+    const token = localStorage.getItem("token") || "";
+    dispatch(fetchApprovedUsers(token, filters, "", searchTerm));
   };
 
+  const handleFilterChange = (e, filterName) => {
+    setFilters((prevFilters) => ({
+      ...prevFilters,
+      [filterName]: e.target.value,
+    }));
+  };
   const handleViewProfile = (wctId) => {
     router.push(`/talent/${wctId}`);
   };
@@ -84,7 +98,7 @@ const TalentPage = () => {
 
   if (!showContent) {
     return (
-      <div className="flex justify-center items-center h-screen bg-primary-forground dark:bg-dark-primary-forground">
+      <div className="flex  justify-center items-center h-screen bg-primary-forground dark:bg-dark-primary-forground">
         <LoadingSpinner />
       </div>
     );
@@ -148,35 +162,6 @@ const TalentPage = () => {
 
       <BreadcrumbSection />
 
-      <section>
-        {/* Search Bar */}
-        <div className="search-bar flex flex-col md:flex-row items-center mb-6 md:mb-8 space-y-4 md:space-y-0 md:space-x-4">
-          <input
-            type="text"
-            placeholder="Search by name, location, or skills"
-            value={searchTerm}
-            onChange={handleSearchChange}
-            className="w-full px-4 py-2 rounded-md border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-black dark:text-white focus:outline-none focus:ring-1 focus:ring-blue-600"
-          />
-          <button
-            onClick={handleSearch}
-            className="px-4 py-2 text-sm rounded-md border border-gray-300 dark:border-gray-600 bg-blue-500 dark:bg-blue-600 text-white hover:bg-blue-600 dark:hover:bg-blue-700 flex items-center space-x-2"
-          >
-            <svg
-              className="w-4 h-4"
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
-              <path d="M16 13C16 11.8954 14.8954 11 13 11C11.1046 11 10 11.8954 10 13V17C10 18.1046 11.1046 19 13 19C14.8954 19 16 18.1046 16 17V13ZM13 21C14.6569 21 16 19.6569 16 18C16 16.3431 14.6569 15 13 15C11.3431 15 10 16.3431 10 18C10 19.6569 11.3431 21 13 21C14.6569 21 16 19.6569 16 18C16 16.3431 14.6569 15 13 15Z" />
-            </svg>
-            <Label>Search</Label>
-          </button>
-        </div>
-      </section>
-
-      {/* Talents Count Row */}
       <section className="talent-count-row flex flex-col md:flex-row justify-between items-center mb-8 bg-neutral-500 dark:bg-neutral-700 p-2 rounded-md shadow-lg">
         <motion.p
           className="text-black dark:text-white text-lg font-semibold mb-2 md:mb-0"
@@ -298,7 +283,8 @@ const TalentPage = () => {
               {/* <h2 className="text-xl font-semibold mb-2 text-black dark:text-white">
                 {talent?.profile?.screenName || "Wonchance Talent"}
               </h2> */}
-              <p className="text-gray-600 dark:text-gray-300 mb-2">
+              <p className="text-gray-600 mt-5 dark:text-gray-300 mb-2">
+                <strong>Profile ID: </strong>
                 {talent?.wctId || "N/A"}
               </p>
               {/* <p className="text-gray-600 dark:text-gray-300 mb-4">

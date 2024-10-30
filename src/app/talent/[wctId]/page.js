@@ -124,11 +124,11 @@ const ProfilePage = () => {
   const rating = Math.floor(Math.random() * 5) + 1; // Use default rating or adjust as needed
   return (
     <div className="container mx-auto p-4 bg-primary-forground dark:bg-dark-primary-forground w-svw">
-      <div className="flex flex-row justify-between px-10">
+      <div className="flex flex-col md:flex-row md:justify-between px-4 md:px-10">
         <BreadcrumbSection />
         {user.user?.role === "Super Admin" ? (
           <Link href="/User/profiles/update">
-            <span className="inline-block mt-4 px-6 py-2 text-white bg-black rounded-md hover:bg-black">
+            <span className="inline-block mt-4 md:mt-0 px-4 py-2 text-white bg-black rounded-md hover:bg-gray-800 md:px-6">
               Edit Profile
             </span>
           </Link>
@@ -309,48 +309,81 @@ const ProfilePage = () => {
                 <p className="font-semibold">Appearance:</p>
                 <div className="grid grid-cols-2 gap-2">
                   {profile.profile.physicalDetails?.bodyType && (
-                    <p>Body Type: {profile.profile.physicalDetails.bodyType}</p>
+                    <p>
+                      <strong>Body Type:</strong>{" "}
+                      {profile.profile.physicalDetails.bodyType}
+                    </p>
                   )}
                   {profile.profile.physicalDetails?.height && (
-                    <p>Height: {profile.profile.physicalDetails.height} CM</p>
+                    <p>
+                      <strong>Height:</strong>{" "}
+                      {profile.profile.physicalDetails.height} CM
+                    </p>
                   )}
                   {profile.profile.physicalDetails?.weight && (
-                    <p>Weight: {profile.profile.physicalDetails.weight} KG</p>
+                    <p>
+                      <strong>Weight:</strong>{" "}
+                      {profile.profile.physicalDetails.weight} KG
+                    </p>
                   )}
                   {profile.profile.physicalDetails?.hairColor && (
                     <p>
-                      Hair Color: {profile.profile.physicalDetails.hairColor}
+                      <strong>Hair Color:</strong>{" "}
+                      {profile.profile.physicalDetails.hairColor}
                     </p>
                   )}
                   {profile.profile.physicalDetails?.skinTone && (
-                    <p>Skin Tone: {profile.profile.physicalDetails.skinTone}</p>
+                    <p>
+                      <strong>Skin Tone:</strong>{" "}
+                      {profile.profile.physicalDetails.skinTone}
+                    </p>
                   )}
                   {profile.profile.physicalDetails?.eyeColor && (
-                    <p>Eye Color: {profile.profile.physicalDetails.eyeColor}</p>
+                    <p>
+                      <strong>Eye Color:</strong>{" "}
+                      {profile.profile.physicalDetails.eyeColor}
+                    </p>
                   )}
                   {profile.profile.physicalDetails?.shoeSize && (
-                    <p>Shoe Size: {profile.profile.physicalDetails.shoeSize}</p>
+                    <p>
+                      <strong>Shoe Size:</strong>{" "}
+                      {profile.profile.physicalDetails.shoeSize}
+                    </p>
                   )}
                   {profile.profile.physicalDetails?.Chest && (
-                    <p>Chest: {profile.profile.physicalDetails.Chest}</p>
+                    <p>
+                      <strong>Chest:</strong>{" "}
+                      {profile.profile.physicalDetails.Chest}
+                    </p>
                   )}
                   {profile.profile.physicalDetails?.waist && (
-                    <p>Waist: {profile.profile.physicalDetails.waist}</p>
+                    <p>
+                      <strong>Waist:</strong>{" "}
+                      {profile.profile.physicalDetails.waist}
+                    </p>
                   )}
                   {profile.profile.physicalDetails?.hips && (
-                    <p>Hips: {profile.profile.physicalDetails.hips}</p>
+                    <p>
+                      <strong>Hips:</strong>{" "}
+                      {profile.profile.physicalDetails.hips}
+                    </p>
                   )}
                   {profile.profile.physicalDetails?.tattoos && (
-                    <p>Tattoos: {profile.profile.physicalDetails.tattoos}</p>
+                    <p>
+                      <strong>Tattoos:</strong>{" "}
+                      {profile.profile.physicalDetails.tattoos}
+                    </p>
                   )}
                   {profile.profile.physicalDetails?.piercings && (
                     <p>
-                      Piercings: {profile.profile.physicalDetails.piercings}
+                      <strong>Piercings:</strong>{" "}
+                      {profile.profile.physicalDetails.piercings}
                     </p>
                   )}
                   {profile.profile.physicalDetails?.bodyShape && (
                     <p>
-                      BodyShape: {profile.profile.physicalDetails.bodyShape}
+                      <strong>Body Shape:</strong>{" "}
+                      {profile.profile.physicalDetails.bodyShape}
                     </p>
                   )}
                 </div>
@@ -552,7 +585,7 @@ const ProfilePage = () => {
 
       <Gallery profile={profile} />
       <Work profile={profile} />
-      <RelatRole profile={profile} />
+      {/* <RelatRole profile={profile} /> */}
     </div>
   );
 };

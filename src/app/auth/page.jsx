@@ -458,7 +458,7 @@ const Login = () => {
                   placeholder="Enter your email"
                   className="rounded-full "
                 />
-                <div className="my-2">
+                {/* <div className="my-2">
                   <Label className="block my-2">Date of Birth</Label>
                   <DOBPicker
                     // value={formData.profile?.dateOfBirth} // Ensure this is a string or null
@@ -471,7 +471,7 @@ const Login = () => {
                       }
                     }}
                   />
-                </div>
+                </div> */}
                 <Label>Gender</Label>
                 {/* Radio Button */}
                 <div className="flex gap-2">

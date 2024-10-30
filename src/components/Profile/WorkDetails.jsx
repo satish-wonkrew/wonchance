@@ -55,20 +55,23 @@ export default function Home() {
   return (
     <div className="h-auto py-6">
       <div className="max-w-6xl mx-auto px-4">
-        {/* Work Details Header */}
-        <div className="grid grid-cols-3 gap-6 mb-6">
-          <h1 className="col-span-2 bg-gray-300 text-xl font-bold py-3 px-4 rounded-lg shadow">
+        {/* Work Details and Media Preferences Headers */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
+          <h1 className="col-span-2 max-md:hidden md:col-span-2 bg-gray-300 text-xl font-bold py-3 px-4 rounded-lg shadow">
             Work Details
           </h1>
-          <h1 className="col-span-1 bg-gray-300 text-xl font-bold py-3 px-4 rounded-lg shadow">
+          <h1 className="col-span-1 bg-gray-300 text-xl md:hidden  font-bold py-3 px-4 rounded-lg shadow">
+            Work Details & Media Preferences
+          </h1>
+          <h1 className="col-span-1 max-md:hidden bg-gray-300 text-xl font-bold py-3 px-4 rounded-lg shadow">
             Media Preferences
           </h1>
         </div>
 
-        <div className="grid grid-cols-3 gap-6">
-          {/* Left Side Accordions */}
+        <div className="flex flex-col md:grid md:grid-cols-3 gap-6">
+          {/* Left Side Accordions for Work Details */}
           <div className="space-y-4 col-span-2">
-            {/* Achievement Section */}
+            {/* Achievements Section */}
             <div className="bg-white shadow-lg rounded-lg p-4 transition duration-300 ease-in-out hover:shadow-xl">
               <div
                 className="flex justify-between cursor-pointer items-center"
@@ -80,7 +83,6 @@ export default function Home() {
 
               {openSections.achievement && (
                 <div className="mt-2">
-                  {/* Render workDetails */}
                   <div className="bg-white shadow-inner p-4 rounded-lg">
                     <h3 className="font-semibold text-lg">Work Details</h3>
                     <ul className="mt-2 space-y-2 text-sm">
@@ -106,8 +108,6 @@ export default function Home() {
                         {profiles?.profile.workDetails.shootPerDay || "N/A"}
                       </li>
                     </ul>
-
-                    {/* Render projects array */}
                   </div>
                 </div>
               )}
@@ -132,11 +132,9 @@ export default function Home() {
                 </div>
               )}
             </div>
-
-            {/* Work Links Section */}
           </div>
 
-          {/* Right Side Accordions */}
+          {/* Right Side Accordions for Media Preferences */}
           <div className="space-y-4 col-span-1">
             {/* Interested Media Section */}
             <div className="bg-white shadow-lg rounded-lg p-4 transition duration-300 ease-in-out hover:shadow-xl">
@@ -179,11 +177,7 @@ export default function Home() {
                 <ul className="mt-2 text-sm space-y-1">
                   {profiles?.profile.interests.comfortableWith?.length > 0 ? (
                     profiles.profile.interests.comfortableWith.map(
-                      (item, index) => (
-                        <li key={index} className="mr-4 mb-2">
-                          {item}
-                        </li>
-                      )
+                      (item, index) => <li key={index}>{item}</li>
                     )
                   ) : (
                     <li>No preferences listed.</li>
@@ -244,32 +238,6 @@ export default function Home() {
                 )}
               </div>
             )}
-
-            {/*Interested Role Section */}
-            <div className="bg-white shadow-lg rounded-lg p-4 transition duration-300 ease-in-out hover:shadow-xl">
-              <div
-                className="flex justify-between cursor-pointer items-center"
-                onClick={() => toggleSection("interestedRole")}
-              >
-                <span className="font-semibold">Interested Role</span>
-                <span>{openSections.interestedRole ? "↑" : "↓"}</span>
-              </div>
-              {openSections.interestedRole && (
-                <ul>
-                  {profiles?.profile.interests.interestedRoles?.length > 0 ? (
-                    profiles.profile.interests.interestedRoles.map(
-                      (role, index) => (
-                        <li key={index} className="mt-2 text-sm">
-                          {role}
-                        </li>
-                      )
-                    )
-                  ) : (
-                    <li className="mt-2 text-sm">No role interests listed.</li>
-                  )}
-                </ul>
-              )}
-            </div>
           </div>
         </div>
       </div>
