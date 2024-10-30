@@ -39,7 +39,7 @@ export default function RootLayout({ children }) {
 
               <Navbar />
               <Toaster richColors />
-              <main className="pt-[100px] flex-1">
+              <main className="flex-1">
                 {children}
               </main>
 
