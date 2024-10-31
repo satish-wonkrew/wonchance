@@ -144,7 +144,7 @@ const CastingCall = () => {
     return <p className="text-center text-red-500">Error: {error.message}</p>;
 
   return (
-    <div className="container mx-auto p-4 bg-primary-foreground dark:bg-dark-primary-foreground">
+    <div className="container mx-auto mt-20 p-4 bg-primary-foreground dark:bg-dark-primary-foreground">
       {/* Hero Section */}
       <header className="hero-section bg-gradient-to-r from-gray-300 to-gray-500 dark:from-gray-700 dark:to-gray-900 flex flex-col md:flex-row items-center justify-between p-4 md:p-8 h-auto md:h-80 rounded-lg shadow-lg mb-8">
         <motion.h1
@@ -279,11 +279,11 @@ const CastingCall = () => {
                 {casting.role?.description || "No description"}
               </p> */}
               <p className="text-gray-600 dark:text-gray-300 mb-4">
-                <strong>Casting Date:</strong>{" "}
+                <strong>Shoot Date:</strong>{" "}
                 {new Date(casting.castingDate).toLocaleDateString()}
               </p>
               <p className="text-gray-600 dark:text-gray-300 mb-4">
-                <strong>Expiry Date:</strong>{" "}
+                <strong>Last   Date:</strong>{" "}
                 {new Date(casting.expiryDate).toLocaleDateString()}
               </p>
               <Button

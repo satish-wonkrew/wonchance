@@ -39,6 +39,7 @@ const Login = () => {
     lastName: "",
     ageGroup: "",
     email: "",
+    dateOfBirth: "",
     gender: "",
     role: "talent", // Add a role field to the profileInput state
   });
@@ -304,9 +305,17 @@ const Login = () => {
   };
 
   return (
-    <div className="grid grid-cols-1 lg:grid-cols-2 bg-gradient-to-r from-gray-100 via-gray-200 to-gray-300 dark:bg-gradient-to-r dark:from-gray-900 dark:via-gray-800 dark:to-gray-700">
+    <div className="grid grid-cols-1 lg:grid-cols-2 bg-gradient-to-r h-svh from-gray-100 via-gray-200 to-gray-300 dark:bg-gradient-to-r dark:from-gray-900 dark:via-gray-800 dark:to-gray-700">
+      {showConfetti && (
+        <Confetti
+          width={window.innerWidth}
+          height={window.innerHeight}
+          numberOfPieces={500}
+          gravity={0.3}
+        />
+      )}
       <div
-        className="relative bg-cover bg-center lg:h-auto h-64 overflow-hidden"
+        className="relative bg-cover bg-center lg:h-auto h-auto overflow-hidden"
         style={{
           backgroundImage: `url('/Img/Login.png')`,
         }}
@@ -316,14 +325,6 @@ const Login = () => {
 
       <div className="flex items-center justify-center p-10">
         <div className="bg-white dark:bg-gray-800 shadow-2xl rounded-3xl p-8 lg:p-12 max-w-lg w-full space-y-8 relative">
-          {showConfetti && (
-            <Confetti
-              width={window.innerWidth}
-              height={window.innerHeight}
-              numberOfPieces={500}
-              gravity={0.3}
-            />
-          )}
           <h1
             className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-center text-gray-900 dark:text-white tracking-wide leading-tight 
              transition-all duration-200 ease-in-out mb-4 md:mb-6"

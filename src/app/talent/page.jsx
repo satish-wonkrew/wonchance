@@ -115,7 +115,7 @@ const TalentPage = () => {
   if (loading) {
     return (
       <div className="flex justify-center items-center h-screen bg-primary-forground dark:bg-dark-primary-forground">
-        <img src="/WONCHANCE.gif" alt="Loading"  />
+        <img src="/WONCHANCE.gif" alt="Loading" />
       </div>
     );
   }
@@ -137,9 +137,22 @@ const TalentPage = () => {
       </div>
     );
   }
+  const calculateAge = (birthDate) => {
+    const today = new Date();
+    const birthDateObj = new Date(birthDate);
+    let age = today.getFullYear() - birthDateObj.getFullYear();
+    const monthDiff = today.getMonth() - birthDateObj.getMonth();
+    if (
+      monthDiff < 0 ||
+      (monthDiff === 0 && today.getDate() < birthDateObj.getDate())
+    ) {
+      age--;
+    }
+    return age;
+  };
 
   return (
-    <div className="talent-page container mx-auto p-4 bg-primary-forground dark:bg-dark-primary-forground">
+    <div className="talent-page mt-24 container mx-auto p-4 bg-primary-forground dark:bg-dark-primary-forground">
       {/* Hero Section */}
       <header className="hero-section bg-gradient-to-r from-gray-300 to-gray-500 dark:from-gray-700 dark:to-gray-900 flex flex-col md:flex-row items-center justify-between p-4 md:p-8 h-auto md:h-80 rounded-lg shadow-lg mb-8">
         <motion.h1
@@ -169,7 +182,7 @@ const TalentPage = () => {
           animate={{ opacity: 1 }}
           transition={{ duration: 0.5 }}
         >
-          Total Talents Found: {talents.length}
+          Total Talents : {talents.length}
         </motion.p>
 
         {/* View Mode Toggle Buttons */}

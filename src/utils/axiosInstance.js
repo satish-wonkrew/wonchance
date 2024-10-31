@@ -2,7 +2,7 @@ import axios from 'axios';
 import { getToken } from '@/utils/auth'; // Assuming you have a function to get the token
 
 const axiosInstance = axios.create({
-    baseURL: `https://api.wonchance.com/api`, // Or wherever you need
+    baseURL: `http://localhost:5000/api`, // Or wherever you need
 });
 
 // Add a request interceptor

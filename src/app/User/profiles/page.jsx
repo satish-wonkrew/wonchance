@@ -65,8 +65,8 @@ const ProfileCard = () => {
         <BreadcrumbSection />
 
         <Link href="/User/profiles/update">
-          <span className="inline-block mt-4 px-6 py-2 text-white bg-black rounded-md hover:bg-black">
-            Edit Profile
+          <span className="inline-block mt-20 px-6 py-2 text-white bg-black rounded-md hover:bg-black">
+            Edit <span className="max-md:hidden">Profile</span>
           </span>
         </Link>
       </div>

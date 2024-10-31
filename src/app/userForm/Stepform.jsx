@@ -216,6 +216,7 @@ const StepForm = () => {
             User={User}
           />
         );
+        
       } else {
         return (
           <FileUpload2

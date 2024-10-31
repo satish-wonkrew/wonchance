@@ -26,6 +26,7 @@ import { applyForRole } from "@/redux/slices/applicationsSlice";
 import { toast } from "sonner";
 import { format } from "date-fns";
 import Applicants from "./Applicants";
+import { BreadcrumbSection } from "@/components/etc/Breadcrumb";
 
 const CastingCall = () => {
   const applicationResponse = useSelector((state) => state.applications);
@@ -181,7 +182,8 @@ const CastingCall = () => {
     );
 
   return (
-    <div className="bg-gray-100 max-w-5xl mx-auto p-6">
+    <div className="bg-gray-100 mt-24 max-w-5xl mx-auto p-6">
+      <BreadcrumbSection />
       <div className="bg-gray-100 min-h-screen flex items-center justify-center">
         <div className="w-full max-w-5xl">
           {/* Casting Call Details Section */}

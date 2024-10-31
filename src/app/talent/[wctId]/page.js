@@ -46,7 +46,7 @@ const ProfilePage = () => {
         const token = localStorage.getItem("token");
 
         const { data } = await axios.get(
-          `https://api.wonchance.com/api/talent/${wctId}`,
+          `http://localhost:5000/api/talent/${wctId}`,
           {
             headers: { Authorization: `Bearer ${token}` },
           }
@@ -67,7 +67,7 @@ const ProfilePage = () => {
   if (loading) {
     return (
       <div className="container mx-auto p-4 text-center bg-primary-forground dark:bg-dark-primary-forground">
-        <LoadingSpinner />
+        <img src="/WONCHANCE.gif" alt="Loading" />
       </div>
     );
   }
@@ -123,7 +123,7 @@ const ProfilePage = () => {
   const age = calculateAge(profile.profile.dateOfBirth);
   const rating = Math.floor(Math.random() * 5) + 1; // Use default rating or adjust as needed
   return (
-    <div className="container mx-auto p-4 bg-primary-forground dark:bg-dark-primary-forground w-svw">
+    <div className="container mx-auto mt-24 p-4 bg-primary-forground dark:bg-dark-primary-forground w-svw">
       <div className="flex flex-col md:flex-row md:justify-between px-4 md:px-10">
         <BreadcrumbSection />
         {user.user?.role === "Super Admin" ? (

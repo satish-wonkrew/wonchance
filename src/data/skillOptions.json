@@ -1,20 +1,28 @@
 {
   "driving": [
     {
-      "value": "four wheeler",
+      "value": "fourWheeler",
       "label": "Four Wheeler"
     },
     {
-      "value": "two wheeler",
+      "value": "twoWheeler",
       "label": "Two Wheeler"
     },
     {
-      "value": "heavy machinery",
-      "label": "Heavy Machinery"
+      "value": "lmv",
+      "label": "LMV"
+    },
+    {
+      "value": "hmv",
+      "label": "HMV"
     },
     {
       "value": "other",
       "label": "Other"
+    },
+    {
+      "value": "none",
+      "label": "None"
     }
   ],
   "singing": [
@@ -23,26 +31,44 @@
     { "value": "rock", "label": "Rock" },
     { "value": "country", "label": "Country" },
     { "value": "jazz", "label": "Jazz" },
-    { "value": "other", "label": "Other" }
+    { "value": "folk", "label": "Folk" },
+    { "value": "fusion", "label": "Fusion" },
+    { "value": "rap", "label": "Rap" },
+    { "value": "melody", "label": "Melody" },
+    { "value": "hipHop", "label": "Hip Hop" },
+    { "value": "backingVocalist", "label": "Backing Vocalist" },
+    { "value": "lyricist", "label": "Lyricist" },
+    { "value": "other", "label": "Other" },
+    { "value": "none", "label": "None" }
   ],
   "danceStyle": [
     { "value": "ballet", "label": "Ballet" },
     { "value": "hipHop", "label": "Hip Hop" },
     { "value": "tap", "label": "Tap" },
     { "value": "contemporary", "label": "Contemporary" },
-    { "value": "other", "label": "Other" }
+    { "value": "freestyle", "label": "Free Style" },
+    {
+      "value": "contemporaryChoreographer",
+      "label": "Contemporary Choreographer"
+    },
+    { "value": "traditional", "label": "Traditional" },
+    { "value": "other", "label": "Other" },
+    { "value": "none", "label": "None" }
   ],
   "martialArts": [
     { "value": "karate", "label": "Karate" },
     { "value": "taekwondo", "label": "Taekwondo" },
     { "value": "judo", "label": "Judo" },
     { "value": "boxing", "label": "Boxing" },
-    { "value": "other", "label": "Other" }
+    { "value": "other", "label": "Other" },
+    { "value": "none", "label": "None" }
   ],
   "waterActivities": [
     { "value": "swimming", "label": "Swimming" },
     { "value": "surfing", "label": "Surfing" },
     { "value": "diving", "label": "Diving" },
-    { "value": "other", "label": "Other" }
+    { "value": "rafting", "label": "Rafting" },
+    { "value": "other", "label": "Other" },
+    { "value": "none", "label": "None" }
   ]
 }
