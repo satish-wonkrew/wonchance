@@ -1,38 +1,57 @@
 import { useState, useEffect, useRef } from "react";
 import Calendar from "react-calendar";
 import "react-calendar/dist/Calendar.css";
-import { FiCalendar } from "react-icons/fi";
+import { FiCalendar, FiXCircle } from "react-icons/fi";
+import { format, parse } from "date-fns";
+import { enUS, fr, es } from "date-fns/locale"; // Add more locales if needed
 
-const DOBPicker = ({ value, onDateChange }) => {
-  const [date, setDate] = useState(value ? new Date(value) : null);
+const AdvancedDatePicker = ({ value, onDateChange, locale = enUS, dateFormat = "dd-MM-yyyy" }) => {
+  const [selectedDate, setSelectedDate] = useState(value ? new Date(value) : null);
   const [isOpen, setIsOpen] = useState(false);
+  const [inputValue, setInputValue] = useState(value ? format(new Date(value), dateFormat, { locale }) : "");
   const calendarRef = useRef();
 
-  const toggleCalendar = () => setIsOpen(!isOpen);
+  const toggleCalendar = () => setIsOpen((prev) => !prev);
 
-  const handleDateChange = (selectedDate) => {
-    if (selectedDate > new Date()) {
+  // Helper function to create a date without timezone offset
+  const createDateWithoutOffset = (year, month, day) => {
+    return new Date(Date.UTC(year, month - 1, day)); // month is 0-indexed
+  };
+
+  // Handle input change for manual date entry
+  const handleInputChange = (e) => {
+    const dateStr = e.target.value;
+    setInputValue(dateStr);
+
+    const parsedDate = parse(dateStr, dateFormat, new Date(), { locale });
+    if (parsedDate && parsedDate <= new Date()) {
+      const utcDate = createDateWithoutOffset(
+        parsedDate.getFullYear(),
+        parsedDate.getMonth() + 1,
+        parsedDate.getDate()
+      );
+      setSelectedDate(utcDate);
+      onDateChange(utcDate);
+    }
+  };
+
+  // Handle date selection from calendar
+  const handleDateChange = (date) => {
+    if (date > new Date()) {
       alert("Future dates are not allowed");
     } else {
-      setDate(selectedDate);
-      onDateChange(selectedDate);
+      const utcDate = createDateWithoutOffset(date.getFullYear(), date.getMonth() + 1, date.getDate());
+      setSelectedDate(utcDate);
+      setInputValue(format(utcDate, dateFormat, { locale }));
+      onDateChange(utcDate);
       setIsOpen(false);
     }
   };
 
-  const formatDate = (date) => {
-    if (!(date instanceof Date) || isNaN(date)) {
-      return "";
-    }
-    const day = String(date.getDate()).padStart(2, "0");
-    const month = String(date.getMonth() + 1).padStart(2, "0");
-    const year = date.getFullYear();
-    return `${day}-${month}-${year}`;
-  };
-
+  // Handle outside click to close the calendar
   useEffect(() => {
-    const handleClickOutside = (event) => {
-      if (calendarRef.current && !calendarRef.current.contains(event.target)) {
+    const handleClickOutside = (e) => {
+      if (calendarRef.current && !calendarRef.current.contains(e.target)) {
         setIsOpen(false);
       }
     };
@@ -40,31 +59,43 @@ const DOBPicker = ({ value, onDateChange }) => {
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
+  // Update selectedDate when value prop changes
   useEffect(() => {
     if (value) {
-      setDate(new Date(value));
-    } else {
-      setDate(null);
+      const date = new Date(value);
+      setSelectedDate(date);
+      setInputValue(format(date, dateFormat, { locale }));
     }
-  }, [value]);
+  }, [value, dateFormat, locale]);
 
   return (
-    <div className="relative flex flex-col items-start space-y-3 font-serif w-full">
-      <div className="relative w-full">
+    <div className="relative w-full font-serif">
+      <div className="relative">
+        {/* Input Field */}
         <div
-          className="flex items-center border border-gray-300 rounded-lg px-4 py-3 cursor-pointer hover:border-blue-600 transition duration-200 ease-in-out focus-within:ring-2 focus-within:ring-blue-500 shadow-md"
+          className="flex items-center border border-gray-300 rounded-lg px-4 py-3 cursor-pointer hover:border-blue-600 focus-within:ring-2 focus-within:ring-blue-500 shadow-md transition"
           onClick={toggleCalendar}
-          tabIndex={0} // Make it keyboard accessible
-          onKeyPress={(e) => e.key === "Enter" && toggleCalendar()} // Handle enter key
+          tabIndex={0}
+          onKeyDown={(e) => e.key === "Enter" && toggleCalendar()}
         >
           <input
             type="text"
-            readOnly
-            value={formatDate(date)}
-            placeholder="DD-MM-YYYY"
+            value={inputValue}
+            placeholder={format(new Date(), dateFormat, { locale })}
+            onChange={handleInputChange}
             className="w-full text-gray-700 placeholder-gray-500 focus:outline-none bg-transparent"
           />
-          <FiCalendar className="text-blue-500 ml-2 transition-transform duration-200 transform hover:scale-110" />
+          <FiCalendar className="text-blue-500 ml-2 transition-transform transform hover:scale-110" />
+          {inputValue && (
+            <FiXCircle
+              className="text-red-500 ml-2 cursor-pointer hover:text-red-700"
+              onClick={() => {
+                setSelectedDate(null);
+                setInputValue("");
+                onDateChange(null);
+              }}
+            />
+          )}
         </div>
 
         {/* Calendar Popup */}
@@ -73,29 +104,23 @@ const DOBPicker = ({ value, onDateChange }) => {
             ref={calendarRef}
             className="absolute top-14 left-0 sm:left-auto sm:right-0 w-full sm:w-72 md:w-80 lg:w-96 z-20 bg-white rounded-xl shadow-lg p-5 border border-gray-200 transform scale-95 origin-top-left transition-transform duration-300 ease-out"
           >
-            <div className="flex flex-col space-y-4">
-              {/* Calendar for Day Selection */}
-              <div className="transition-opacity duration-300 ease-in-out">
-                <Calendar
-                  onChange={handleDateChange}
-                  value={date}
-                  maxDate={new Date()}
-                  className="rounded-lg border border-gray-300 transition-transform duration-200 ease-in-out hover:scale-105"
-                  minDetail="decade"
-                  maxDetail="month"
-                  showNeighboringMonth={false}
-                  next2Label={null}
-                  prev2Label={null}
-                  tileClassName={({ date, view }) => {
-                    if (view === "month") {
-                      const isSelected = date.toDateString() === (date ? date.toDateString() : "").toString();
-                      return isSelected ? 'bg-blue-500 text-slate-900 rounded-full' : '';
-                    }
-                    return '';
-                  }}
-                />
-              </div>
-            </div>
+            <Calendar
+              onChange={handleDateChange}
+              value={selectedDate}
+              maxDate={new Date()}
+              locale={locale}
+              className="rounded-lg border border-gray-300"
+              minDetail="decade"
+              maxDetail="month"
+              showNeighboringMonth={false}
+              next2Label={null}
+              prev2Label={null}
+              tileClassName={({ date, view }) =>
+                view === "month" && date.toDateString() === selectedDate?.toDateString()
+                  ? "bg-blue-500 text-white rounded-full"
+                  : ""
+              }
+            />
           </div>
         )}
       </div>
@@ -103,4 +128,4 @@ const DOBPicker = ({ value, onDateChange }) => {
   );
 };
 
-export default DOBPicker;
+export default AdvancedDatePicker;

@@ -5,10 +5,10 @@ import { useEffect, useState } from "react";
 import "./style.css";
 
 const ExpandingCards = () => {
-  const [activeId, setActiveId] = useState(1);
+  const [activeId, setActiveId] = useState();
   const [isHovered, setIsHovered] = useState(false);
 
-  // Your images array with id and url
+  // Images array with id and url
   const images = [
     { id: 1, url: "/Img/home/sect2/won1.png", title: "Card 1" },
     { id: 2, url: "/Img/home/sect2/won2.png", title: "Card 2" },
@@ -19,76 +19,86 @@ const ExpandingCards = () => {
     { id: 7, url: "/Img/home/sect2/2.png", title: "Card 7" },
   ];
 
-  // Function to handle click and set active card
+  // Set active card on click
   const onClick = (id) => setActiveId(id);
 
-  // Function to navigate to the next card
+  // Navigate to the next card
   const nextCard = () => {
     setActiveId((prevId) => (prevId < images.length ? prevId + 1 : 1));
   };
 
-  // Function to navigate to the previous card
+  // Navigate to the previous card
   const prevCard = () => {
     setActiveId((prevId) => (prevId > 1 ? prevId - 1 : images.length));
   };
 
   useEffect(() => {
-    // Set an interval for automatic sliding
+    // Auto-slide every 3 seconds if not hovered
     const interval = setInterval(() => {
       if (!isHovered) {
         nextCard();
       }
-    }, 3000); // Change slide every 3 seconds
+    }, 3000);
 
-    // Clear interval on component unmount
+    // Clear interval on unmount
     return () => clearInterval(interval);
-  }, [isHovered, images.length]); // Dependency to re-run if the number of cards changes
+  }, [isHovered]);
 
   return (
-    <div className="w-full flex flex-col justify-center items-center">
-      <div className="text-center mb-12">
-        <h1 className="text-4xl font-bold text-gray-800 mt-4">The Wonchance Community</h1>
-        <p className="text-gray-500 mt-4 max-w-md mx-auto">
-          Wonchance partners with renowned production houses for exceptional collaborations.
-        </p>
-      </div>
-      <div className="relative container flex justify-center items-center">
-        <button
-          onClick={prevCard}
-          className="carousel-button left absolute left-4 top-1/2 transform -translate-y-1/2 bg-white rounded-full p-2 shadow-lg transition hover:bg-gray-200"
-        >
-          &#10094; {/* Left arrow */}
-        </button>
-        <div className="flex overflow-hidden">
-          {images.slice(0, 3).map((card) => ( // Show only the first 3 images
-            <div
-              key={card.id}
-              className={`panel ${
-                activeId === card.id ? "active" : ""
-              } transition-transform duration-300 ease-in-out hover:scale-105 shadow-lg rounded-lg overflow-hidden m-2`}
-              onClick={() => onClick(card.id)}
-              style={{
-                backgroundImage: `url(${card.url})`,
-                backgroundSize: "cover",
-                backgroundPosition: "center",
-                width: "195px", // Fixed width for the card
-                height: "328px", // Fixed height for the card
-              }}
-              onMouseEnter={() => setIsHovered(true)} // Pause auto-slide on hover
-              onMouseLeave={() => setIsHovered(false)} // Resume auto-slide on mouse leave
-            >
-              <h3 className="text-lg font-semibold text-white absolute bottom-5 left-5">
-                {card.title}
-              </h3>
-            </div>
-          ))}
+    <div className="min-h-screen bg-gray-100">
+      <div className="py-10 px-5 md:px-10 lg:px-20 w-full max-w-full">
+        <div className="text-center mb-8">
+          <h1 className="text-4xl font-bold text-gray-800 mt-4">
+            The Wonchance Community
+          </h1>
+          <p className="text-black-500 mt-4 max-w-md mx-auto">
+            Wonchance partners with renowned production houses for exceptional
+            collaborations.
+          </p>
         </div>
-        <button
-          onClick={nextCard}
-          className="carousel-button right absolute right-4 top-1/2 transform -translate-y-1/2 bg-white rounded-full p-2 shadow-lg transition hover:bg-gray-200"
-        >
-          &#10095; {/* Right arrow */}
-        </button>
+        <div className="relative flex justify-center items-center space-x-4">
+          <div className="flex overflow-hidden space-x-4">
+            {images.slice(0, 6).map((card) => (
+              <div
+                key={card.id}
+                className={`panel ${activeId === card.id ? "active" : ""} transition-transform duration-300 ease-in-out hover:scale-105 shadow-lg rounded-2xl overflow-hidden`}
+                onClick={() => onClick(card.id)}
+                onMouseEnter={() => {
+                  setActiveId(card.id);
+                  setIsHovered(true);
+                }}
+                onMouseLeave={() => setIsHovered(false)}
+                style={{
+                  backgroundImage: `url(${card.url})`,
+                  backgroundSize: "cover",
+                  backgroundPosition: "center",
+                  width: "200px",
+                  height: "350px",
+                }}
+              >
+                {/* Uncomment to display titles if needed */}
+                {/* <h3 className="text-lg font-semibold text-white absolute bottom-5 left-5">
+                  {card.title}
+                </h3> */}
+              </div>
+            ))}
+          </div>
+        </div>
+        {/* Navigation Buttons */}
+        <div className="flex justify-end mt-8 px-10">
+          <button
+            onClick={prevCard}
+            className="bg-black text-white w-7 h-7 rounded-full flex items-center justify-center mr-5 transition-transform duration-200 hover:bg-gray-700 hover:scale-110"
+          >
+            &lt; {/* Left arrow */}
+          </button>
+          <button
+            onClick={nextCard}
+            className="bg-black text-white w-7 h-7 rounded-full flex items-center justify-center transition-transform duration-200 hover:bg-gray-700 hover:scale-110"
+          >
+            &gt; {/* Right arrow */}
+          </button>
+        </div>
       </div>
     </div>
   );

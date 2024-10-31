@@ -9,7 +9,7 @@ const StreamingServicesBar = () => {
           {/* Container with responsive logos */}
           <div className="flex flex-wrap justify-center space-x-4 sm:space-x-6 lg:space-x-8">
             {/* Prime Video Logo */}
-            <div className="flex items-center m-2">
+            <div className="md:flex hidden items-center m-2">
               <img
                 src="/Img/home/sect/prime.png"
                 alt="Prime Video"
@@ -18,7 +18,7 @@ const StreamingServicesBar = () => {
             </div>
 
             {/* Netflix Logo */}
-            <div className="flex items-center m-2">
+            <div className="md:flex hidden items-center m-2">
               <img
                 src="/Img/home/sect/netflix.png"
                 alt="Netflix"
@@ -43,7 +43,7 @@ const StreamingServicesBar = () => {
               />
             </div>
 
-            <div className="flex items-center m-2">
+            <div className="md:flex hidden items-center m-2">
               <img
                 src="/Img/home/sect/prime.png"
                 alt="Prime Video"
@@ -51,7 +51,7 @@ const StreamingServicesBar = () => {
               />
             </div>
 
-            <div className="flex items-center m-2">
+            <div className="md:flex hidden items-center m-2">
               <img
                 src="/Img/home/sect/netflix.png"
                 alt="Netflix"

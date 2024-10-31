@@ -17,39 +17,35 @@
       "label": "HMV"
     },
     {
-      "value": "other",
-      "label": "Other"
-    },
-    {
       "value": "none",
       "label": "None"
     }
   ],
   "singing": [
-    { "value": "classical", "label": "Classical" },
-    { "value": "pop", "label": "Pop" },
-    { "value": "rock", "label": "Rock" },
-    { "value": "country", "label": "Country" },
-    { "value": "jazz", "label": "Jazz" },
-    { "value": "folk", "label": "Folk" },
-    { "value": "fusion", "label": "Fusion" },
+    { "value": "classicalMusic", "label": "Classical Music" },
     { "value": "rap", "label": "Rap" },
     { "value": "melody", "label": "Melody" },
-    { "value": "hipHop", "label": "Hip Hop" },
     { "value": "backingVocalist", "label": "Backing Vocalist" },
     { "value": "lyricist", "label": "Lyricist" },
     { "value": "other", "label": "Other" },
     { "value": "none", "label": "None" }
   ],
   "danceStyle": [
-    { "value": "ballet", "label": "Ballet" },
+    {
+      "value": "folk",
+      "label": "Folk"
+    },
     { "value": "hipHop", "label": "Hip Hop" },
     { "value": "tap", "label": "Tap" },
+    {
+      "value": "fusion",
+      "label": "Fusion"
+    },
     { "value": "contemporary", "label": "Contemporary" },
     { "value": "freestyle", "label": "Free Style" },
     {
-      "value": "contemporaryChoreographer",
-      "label": "Contemporary Choreographer"
+      "value": "choreographer",
+      "label": "Choreographer"
     },
     { "value": "traditional", "label": "Traditional" },
     { "value": "other", "label": "Other" },
@@ -57,9 +53,17 @@
   ],
   "martialArts": [
     { "value": "karate", "label": "Karate" },
-    { "value": "taekwondo", "label": "Taekwondo" },
+    { "value": "kung Fu", "label": "Kung Fu" },
     { "value": "judo", "label": "Judo" },
-    { "value": "boxing", "label": "Boxing" },
+    { "value": "kickboxing", "label": "Kick Boxing" },
+    {
+      "value": "kalaripayattu",
+      "label": "Kalaripayattu"
+    },
+    {
+      "value": "silambam",
+      "label": "Silambam"
+    },
     { "value": "other", "label": "Other" },
     { "value": "none", "label": "None" }
   ],

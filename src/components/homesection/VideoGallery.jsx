@@ -31,22 +31,22 @@ const VideoCarousel = () => {
       description: "Description for Video 1",
     },
     {
-      id: "eYq7Wapu1I4",
+      id: "CHvAACARH9g",
       title: "Video 2 Title",
       description: "Description for Video 2",
     },
     {
-      id: "3JZ_D3ELwOQ",
+      id: "qfGEQse6CwY",
       title: "Video 3 Title",
       description: "Description for Video 3",
     },
     {
-      id: "L_jWHfFzCGA",
+      id: "CHvAACARH9g",
       title: "Video 4 Title",
       description: "Description for Video 4",
     },
     {
-      id: "hY7m5jjJ9mI",
+      id: "CHvAACARH9g",
       title: "Video 5 Title",
       description: "Description for Video 5",
     },
@@ -56,7 +56,7 @@ const VideoCarousel = () => {
     <>
       <section className="max-w-7xl mx-auto px-4 py-10">
         <h2 className="text-3xl font-bold text-center mb-8">
-          YouTube Video Carousel
+          From Wonchance to Ad Spotlight
         </h2>
         <div
           id="video-carousel"
@@ -81,18 +81,18 @@ const VideoCarousel = () => {
                         className="absolute inset-0 flex items-center justify-center"
                       >
                         <img
-                          src="https://cdn.iconscout.com/icon/free/png-256/youtube-86-226404.png"
-                          className="w-16 h-16"
+                          src="/Img/home/youtube-logo.png"
+                          className="w-28 h-20"
                           alt="Play Button"
                         />
                       </a>
                     </div>
                     <div className="p-4">
-                      <h3 className="text-lg font-semibold text-center">
+                      {/* <h3 className="text-lg font-semibold text-center">
                         {video.title}
-                      </h3>
-                      <p className="text-center text-gray-600">
-                        {video.description}
+                      </h3> */}
+                      <p className="text-xs text-gray-600">
+                      Wonchance partners with renowned production houses for exceptional collaborations.
                       </p>
                     </div>
                   </div>

@@ -68,6 +68,7 @@
   }
 }
 
+
 .otp-container {
   display: flex;
   justify-content: space-between;
@@ -325,4 +326,33 @@ body {
 
 .react-calendar__navigation button {
   @apply text-gray-700 hover:bg-gray-200 rounded-md p-1;
+}
+
+/* Define the bubble and entrance animation */
+@keyframes bubbleFloat {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+@keyframes scaleIn {
+  0% {
+    transform: scale(0);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/* Apply animations */
+.bubble-animation {
+  animation: scaleIn 0.5s ease-out forwards, bubbleFloat 4s ease-in-out infinite;
 }

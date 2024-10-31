@@ -3,7 +3,7 @@ import StepForm from "./Stepform";
 
 const page = () => {
   return (
-    <div>
+    <div className="mt-20">
       <StepForm />
     </div>
   );
