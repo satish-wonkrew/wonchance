@@ -46,7 +46,7 @@ const ProfilePage = () => {
         const token = localStorage.getItem("token");
 
         const { data } = await axios.get(
-          `http://localhost:5000/api/talent/${wctId}`,
+          `https://api.wonchance.com/api/talent/${wctId}`,
           {
             headers: { Authorization: `Bearer ${token}` },
           }

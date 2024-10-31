@@ -105,7 +105,7 @@ const LiveCamComponent = () => {
     formData.append("dateTime", dateTime);
 
     try {
-      await fetch("http://localhost:5000/upload", {
+      await fetch("https://api.wonchance.com/upload", {
         method: "POST",
         body: formData,
       });
